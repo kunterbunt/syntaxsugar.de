@@ -1,0 +1,6 @@
+title = "Syntax Sugar"
+languageCode = "en-us"
+baseurl = "http://syntaxsugar.de/"
+pluralizeListTitles = false
+[Taxonomies]
+tag = "tags"

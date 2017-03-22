@@ -1,0 +1,61 @@
+$phone:   "only screen and (max-width: 529px)";
+$tablet:  "only screen and (min-width: 530px) and (max-width: 1024px)";
+$desktop: "only screen and (min-width: 1025px)";
+
+$accent-color: #FF5722;
+$text-color: #090909;
+$almost-white: #FAFAFA;
+$darkgray: #424242;
+$gray: #BDBDBD;
+$lightgray: #F5F5F5;
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body, html, .mdl-layout, .mdl-layout__content, .page-content {
+  // height: auto;
+  color: #424242;
+}
+.mdl-grid {
+  p {
+    font-size: 120%;
+  }
+}
+p, span, h1, h2, h3, h4, figcaption {
+  font-family: "Roboto", "Open Sans", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+.text--centered {
+  text-align: center;
+}
+footer {
+  .mdl-button {
+    span {
+      color: black;
+    }
+    i {
+      line-height: 36px;
+      color: black;
+    }
+  }
+}
+.mdl-layout__header {
+  background: white;
+  color: rgba(0, 0, 0, 0.87);
+  a {
+    color: rgba(0, 0, 0, 0.87);
+    text-transform: capitalize;
+    font-family: "Helvetica","Arial",sans-serif;
+  }
+  .mdl-layout__header-row {
+    padding-left: 0;
+  }
+}
+.icon {
+  height: 75%;
+  margin-top: 12.5%;
+}
