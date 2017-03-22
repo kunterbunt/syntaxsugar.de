@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <link rel="stylesheet" href="css/index.css" type="text/css">
+  <link rel="stylesheet" href="/css/index.css" type="text/css">
 </head>
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -27,7 +27,7 @@
         <div class="mdl-cell mdl-cell--6-col">
           <i class="material-icons">&#xE5C5;</i>
           <div class="vertical-line vertical-line--50px"></div>
-          {{ range first 7 (where .Site.Pages "Section" "==" "posts") }}
+          {{ range (where .Site.Pages "Section" "==" "posts") }}
             <div class="article">
               <a href="{{.Permalink}}" title="{{.Title}}" target="_self">
                 <span class="article__date">{{.Date.Format "January 2"}}</span>
@@ -49,18 +49,11 @@
               </a>
             </div>
             <div class="vertical-line"></div>
-          {{ end }}
-          <a href="/more" class="mdl-button mdl-js-button mdl-js-ripple-effect">
-            SHOW ME MORE
-          </a>
+          {{ end }}          
+          <i class="material-icons">arrow_drop_up</i>
         </div>
         <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       </div>
-      <!-- <div class="mdl-grid mdl-grid--no-spacing">
-        <div class="mdl-cell mdl-cell--12-col">
-          <h2 class="text-align--center">About Me</h2>
-        </div>
-      </div> -->
       {{partial "footer.html" .}}
     </main>
   </div>
