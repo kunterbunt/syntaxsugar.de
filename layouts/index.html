@@ -33,7 +33,8 @@
                 <span class="article__date">{{.Date.Format "January 2"}}</span>
                 <div class="article__content">
                   <div class="article__content--title-section">
-                    <a href="{{ .Section | urlize }}" class="button button--top mdl-button mdl-js-button mdl-js-ripple-effect">{{.Section}}/</a>
+                    <!-- Hacky workaround to make parent link to post clickable. Nested link tricksery. -->
+                    <object><a href="{{ .Section | urlize }}" class="button button--top mdl-button mdl-js-button mdl-js-ripple-effect">{{.Section}}/</a></object>
                   </div>
                   <h4 class="article__content--title">{{.Title}}</h4>
                   {{ if (isset .Params "logo") }}

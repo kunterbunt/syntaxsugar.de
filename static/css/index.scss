@@ -173,9 +173,7 @@ header {
 }
 
 a.button {
-    padding-left: 4px;
     color: $gray;
-
     margin: 0;
     &:hover {
       color: $text-color;
@@ -184,6 +182,6 @@ a.button {
       border-top: 2px solid $accent-color;
     }
     &.button--bottom:hover {
-      border-bottom: 2px solid $accent-color;      
+      border-bottom: 2px solid $accent-color;
     }
 }
