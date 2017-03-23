@@ -5,7 +5,21 @@ date = "2017-03-19T14:01:30+01:00"
 summary = "This is a summary."
 logo = "/imgs/logos/cover.jpg"
 tags = ["tag1", "tag2"]
+hasMath = true
 +++
+
+$$ \sum (a+b) $$
+
+inline stuff \\( \sum_{i=1}^n n^2 \\) bla
+
+```c++
+void main(int argc, char** argv) {
+  std::cout << "Hello Wolrd" << std::endl;
+  return 0;
+}
+```
+
+Inline `code` is also cool
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis vitae magna non lacinia. Quisque vestibulum bibendum purus, ut iaculis justo ultricies sit amet. Nulla nec ornare dui. Suspendisse potenti. Vestibulum sed mauris lacinia, suscipit arcu vitae, vulputate sapien. Aenean accumsan ante diam, et maximus quam porttitor non. Etiam congue turpis ex, id porta magna gravida id. Maecenas pretium urna vitae nisl aliquet fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin quam erat, placerat non ligula eget, pellentesque gravida neque.
 

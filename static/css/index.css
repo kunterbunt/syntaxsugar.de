@@ -15,6 +15,15 @@ p, span, h1, h2, h3, h4, figcaption {
 a {
   text-decoration: none; }
 
+code {
+  text-color: #090909;
+  padding: 2px 4px;
+  font-size: 90%; }
+
+p > code {
+  background-color: #EFF0F1;
+  font-weight: normal; }
+
 .text--centered {
   text-align: center; }
 

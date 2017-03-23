@@ -8,6 +8,7 @@ $almost-white: #FAFAFA;
 $darkgray: #424242;
 $gray: #BDBDBD;
 $lightgray: #F5F5F5;
+$code-highlight: #EFF0F1;
 
 * {
   box-sizing: border-box;
@@ -28,6 +29,16 @@ p, span, h1, h2, h3, h4, figcaption {
 }
 a {
   text-decoration: none;
+}
+code {
+  // background-color: $lightgray;
+  text-color: $text-color;
+  padding: 2px 4px;
+  font-size: 90%;
+}
+p > code {
+  background-color: $code-highlight;
+  font-weight: normal;
 }
 .text--centered {
   text-align: center;
