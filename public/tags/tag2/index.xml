@@ -2,12 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Syntax Sugar</title>
-    <link>http://syntaxsugar.de/index.xml</link>
+    <link>http://syntaxsugar.de/tags/tag2/index.xml</link>
     <description>Recent content on Syntax Sugar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Mar 2017 14:01:30 +0100</lastBuildDate>
-    <atom:link href="http://syntaxsugar.de/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://syntaxsugar.de/tags/tag2/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Some really nice title that&#39;s also really long</title>

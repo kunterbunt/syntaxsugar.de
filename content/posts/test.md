@@ -1,5 +1,5 @@
 +++
-draft = true
+draft = false
 title = "Some really nice title that's also really long"
 date = "2017-03-19T14:01:30+01:00"
 summary = "This is a summary."
