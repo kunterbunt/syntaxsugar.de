@@ -163,7 +163,6 @@ header a {
       -webkit-border-radius: 0.1em;
       -moz-border-radius: 0.1em;
       border-radius: 0.1em;
-      min-height: calc(256px);
       margin-bottom: 13px; }
       .articles-container .article .article__content:hover {
         cursor: pointer; }
@@ -184,6 +183,7 @@ header a {
         padding: 0 8px 8px 8px;
         margin: 0;
         width: 100%;
+        min-height: 64px;
         margin: 0 auto;
         -webkit-transition: box-shadow 0.15s; }
     .articles-container .article .tags {

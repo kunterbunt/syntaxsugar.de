@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Syntax Sugar</title>
+    <link>http://syntaxsugar.de/tags/nginx/index.xml</link>
+    <description>Recent content on Syntax Sugar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://syntaxsugar.de/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Multi-domain nginx configuration</title>
+      <link>http://syntaxsugar.de/posts/nginx/</link>
+      <pubDate>Thu, 23 Mar 2017 20:21:28 +0100</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/nginx/</guid>
+      <description>&lt;p&gt;&lt;code&gt;nginx&lt;/code&gt; is an open-source HTTP server.&lt;br /&gt;
+Let&amp;rsquo;s say you&amp;rsquo;re running a server with &lt;code&gt;nginx&lt;/code&gt; and you have two domains &lt;code&gt;domain1.com&lt;/code&gt; and &lt;code&gt;domain2.com&lt;/code&gt;. You also have the HTML of two websites sitting at &lt;code&gt;~/web/domain1.com&lt;/code&gt; and &lt;code&gt;~/web/domain2.com&lt;/code&gt;. And now, of course, you want visitors that go to &lt;code&gt;domain1.com&lt;/code&gt; to be directed to the website at &lt;code&gt;~/web/domain1.com&lt;/code&gt; and in an analog way for the other domain.&lt;/p&gt;
+
+&lt;p&gt;For this you make the sites &lt;code&gt;available&lt;/code&gt; by creating their configuration files&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;/etc/nginx/sites-available/domain1.de&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;server {
+	listen 80;
+	listen [::]:80;
+
+	root /home/YOUR_USERNAME/web/domain1.de/;
+	index index.html;
+
+	server_name domain1.de www.domain1.de;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Substitute all &lt;code&gt;domain1.de&lt;/code&gt; with &lt;code&gt;domain2.de&lt;/code&gt; and that&amp;rsquo;s your &lt;strong&gt;&lt;code&gt;/etc/nginx/sites-available/domain2.de&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;These sites are now &lt;em&gt;available&lt;/em&gt;, but not &lt;em&gt;enabled&lt;/em&gt; yet. The idea is to configure everything in &lt;strong&gt;&lt;code&gt;/etc/nginx/sites-available/&amp;lt;file&amp;gt;&lt;/code&gt;&lt;/strong&gt;, and to then have symbolic links in &lt;strong&gt;&lt;code&gt;/etc/nginx/sites-enabled/&lt;/code&gt;&lt;/strong&gt; that point to the configuration files you want enabled.&lt;/p&gt;
+
+&lt;p&gt;So &lt;code&gt;enable&lt;/code&gt; the sites:&lt;br /&gt;
+&lt;code&gt;sudo ln -s /etc/nginx/sites-available/domain1.de /etc/nginx/sites-enabled/domain1.de&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo ln -s /etc/nginx/sites-available/domain2.de /etc/nginx/sites-enabled/domain2.de&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure your symbolic work by issuing &lt;code&gt;ls -l /etc/nginx/sites-enabled/&lt;/code&gt; which should show&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;total 0
+lrwxrwxrwx 1 root root 44 Mar 23 19:10 domain1.de -&amp;gt; /etc/nginx/sites-available/domain1.de
+lrwxrwxrwx 1 root root 41 Mar 23 19:15 domain2.de -&amp;gt; /etc/nginx/sites-available/domain2.de
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Assuming &lt;code&gt;Ubuntu&lt;/code&gt;, restart nginx: &lt;code&gt;sudo service nginx restart&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Alright, you&amp;rsquo;re good to go!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

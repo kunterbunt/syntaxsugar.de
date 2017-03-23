@@ -1,4 +1,4 @@
-.highlight { background-color: #EFF0F1; padding: 0px 8px}
+pre, .highlight { background-color: #EFF0F1; overflow-x: auto;}
 .highlight span { font-family: monospace;}
 .highlight .hll { background-color: #EFF0F1 }
 .highlight .c { color: #999988; font-style: italic } /* Comment */

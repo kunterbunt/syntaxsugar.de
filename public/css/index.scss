@@ -3,7 +3,7 @@
 $article__date-margin: 26px;
 $article__content--title-height: 32px;
 $article__content--image-height: 256px;
-$article__content-height: calc(#{$article__content--image-height});
+$article__content-height: 64px;
 
 $background-color: #ECEFF1;
 $line-color: $darkgray;
@@ -133,7 +133,6 @@ header {
       background-color: $almost-white;
       @include box-shadow-default();
       @include rounded(0.1em);
-      min-height: $article__content-height;
       margin-bottom: 13px;
       &:hover {
         cursor: pointer;
@@ -158,6 +157,7 @@ header {
         padding: 0 8px 8px 8px;
         margin: 0;
         width: 100%;
+        min-height: $article__content-height;
         margin: 0 auto;
         -webkit-transition: box-shadow 0.15s;
       }
