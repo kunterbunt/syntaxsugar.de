@@ -35,6 +35,7 @@ code {
   text-color: $text-color;
   padding: 2px 4px;
   font-size: 90%;
+
 }
 p > code {
   background-color: $code-highlight;
@@ -68,4 +69,11 @@ footer {
 .icon {
   height: 75%;
   margin-top: 12.5%;
+}
+.text-align--center {
+  text-align: center;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }

@@ -58,8 +58,9 @@ Let&rsquo;s say you&rsquo;re running a server with <code>nginx</code> and you ha
 <p>These sites are now <em>available</em>, but not <em>enabled</em> yet. The idea is to configure everything in <strong><code>/etc/nginx/sites-available/&lt;file&gt;</code></strong>, and to then have symbolic links in <strong><code>/etc/nginx/sites-enabled/</code></strong> that point to the configuration files you want enabled.</p>
 
 <p>So <code>enable</code> the sites:<br />
-<code>sudo ln -s /etc/nginx/sites-available/domain1.de /etc/nginx/sites-enabled/domain1.de</code><br />
-<code>sudo ln -s /etc/nginx/sites-available/domain2.de /etc/nginx/sites-enabled/domain2.de</code></p>
+<code>sudo ln -s /etc/nginx/sites-available/domain1.de /etc/nginx/sites-enabled/domain1.de</code></p>
+
+<p><code>sudo ln -s /etc/nginx/sites-available/domain2.de /etc/nginx/sites-enabled/domain2.de</code></p>
 
 <p>Make sure your symbolic work by issuing <code>ls -l /etc/nginx/sites-enabled/</code> which should show</p>
 

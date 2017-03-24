@@ -46,6 +46,12 @@ footer .mdl-button i {
   height: 75%;
   margin-top: 12.5%; }
 
+.text-align--center {
+  text-align: center; }
+
+.capitalize {
+  text-transform: capitalize; }
+
 header a {
   padding-left: 64px; }
 
@@ -85,12 +91,6 @@ header a {
   background-color: #ECEFF1; }
   .container--intro p {
     text-align: justify; }
-
-.text-align--center {
-  text-align: center; }
-
-.capitalize {
-  text-transform: capitalize; }
 
 .articles-header {
   background-color: #ECEFF1; }
@@ -179,7 +179,7 @@ header a {
       .articles-container .article .article__content .article__content--title {
         color: #090909;
         line-height: 32px;
-        text-align: justify;
+        text-align: center;
         padding: 0 8px 8px 8px;
         margin: 0;
         width: 100%;

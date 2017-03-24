@@ -35,7 +35,8 @@ Substitute all `domain1.de` with `domain2.de` and that's your **`/etc/nginx/site
 These sites are now *available*, but not *enabled* yet. The idea is to configure everything in **`/etc/nginx/sites-available/<file>`**, and to then have symbolic links in **`/etc/nginx/sites-enabled/`** that point to the configuration files you want enabled.
 
 So `enable` the sites:   
-`sudo ln -s /etc/nginx/sites-available/domain1.de /etc/nginx/sites-enabled/domain1.de`   
+`sudo ln -s /etc/nginx/sites-available/domain1.de /etc/nginx/sites-enabled/domain1.de`
+
 `sudo ln -s /etc/nginx/sites-available/domain2.de /etc/nginx/sites-enabled/domain2.de`
 
 Make sure your symbolic work by issuing `ls -l /etc/nginx/sites-enabled/` which should show

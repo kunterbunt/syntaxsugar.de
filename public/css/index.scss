@@ -53,14 +53,6 @@ header {
   }
 }
 
-.text-align--center {
-  text-align: center;
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
-
 .articles-header {
   background-color: $background-color;
   h2 {
@@ -153,7 +145,7 @@ header {
       .article__content--title {
         color: $text-color;
         line-height: $article__content--title-height;
-        text-align: justify;
+        text-align: center;
         padding: 0 8px 8px 8px;
         margin: 0;
         width: 100%;
