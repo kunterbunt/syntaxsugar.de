@@ -43,8 +43,8 @@ footer .mdl-button i {
     padding-left: 0; }
 
 .icon {
-  height: 75%;
-  margin-top: 12.5%; }
+  height: 24px;
+  width: 24px; }
 
 .text-align--center {
   text-align: center; }
@@ -201,5 +201,8 @@ a.button {
     border-top: 2px solid #FF5722; }
   a.button.button--bottom:hover {
     border-bottom: 2px solid #FF5722; }
+
+footer img {
+  margin-top: 6px; }
 
 /*# sourceMappingURL=index.css.map */
