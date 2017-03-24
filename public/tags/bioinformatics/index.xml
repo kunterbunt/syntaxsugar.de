@@ -107,6 +107,8 @@ CGT 1
 
 &lt;p&gt;Unfortunately this is not the error rate of \( \frac{1}{6} \) we were looking for either. However, it does enable us to compare more than 2 sequences with each other, because their pairwise distance metrics tell us how distant they are in relation to each other.&lt;br /&gt;
 In the world of Computer Networks we can compare different strategies that have an effect on bit error chances. Each strategy&amp;rsquo;s resulting vector distance allows us to compare strategies and how they affect bit error rates.&lt;/p&gt;
+
+&lt;p&gt;This pairwise comparison of sequences, or strategies, wouldn&amp;rsquo;t have been possible with our naive character-wise checking idea. With word frequency vector distances we can depict the similarity of species by finding distances between their genomes&amp;rsquo; DNA sequences and visualizing them in a &lt;a href=&#34;https://en.wikipedia.org/wiki/Phylogenetic_tree&#34;&gt;phylogenetic tree&lt;/a&gt;, or try different networking techniques and protocols and see how they perform compared to each other.&lt;/p&gt;
 </description>
     </item>
     
