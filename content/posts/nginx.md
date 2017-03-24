@@ -7,6 +7,8 @@ draft = false
 hasMath = false
 date = "2017-03-23T20:21:28+01:00"
 title = "Multi-domain nginx configuration"
+logo = ""
+showLogo = false
 +++
 `nginx` is an open-source HTTP server.   
 Let's say you're running a server with `nginx` and you have two domains `domain1.com` and `domain2.com`. You also have the HTML of two websites sitting at `~/web/domain1.com/` and `~/web/domain2.com/`. And now, of course, you want visitors that go to `domain1.com` to be directed to the website at `~/web/domain1.com/` and in an analog way for the other domain.

@@ -30,15 +30,13 @@ p, span, h1, h2, h3, h4, figcaption {
 a {
   text-decoration: none;
 }
-code {
-  // background-color: $lightgray;
+pre > code {
   text-color: $text-color;
-  padding: 2px 4px;
-  font-size: 90%;
-
 }
 p > code {
   background-color: $code-highlight;
+  padding: 2px 4px;
+  font-size: 90%;
 }
 .text--centered {
   text-align: center;
@@ -68,7 +66,7 @@ footer {
 }
 .icon {
   height: 24px;
-  width: 24px;  
+  width: 24px;
 }
 .text-align--center {
   text-align: center;

@@ -4,6 +4,7 @@ title = "Some really nice title that's also really long"
 date = "2017-03-19T14:01:30+01:00"
 summary = "This is a summary."
 logo = "/imgs/logos/cover.jpg"
+showLogo = true
 tags = ["tag1", "tag2"]
 hasMath = true
 +++

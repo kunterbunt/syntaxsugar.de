@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Syntax Sugar</title>
+    <link>http://syntaxsugar.de/tags/bioinformatics/index.xml</link>
+    <description>Recent content on Syntax Sugar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://syntaxsugar.de/tags/bioinformatics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Word frequency vectors and their uses</title>
+      <link>http://syntaxsugar.de/posts/word-frequency-vectors/</link>
+      <pubDate>Fri, 24 Mar 2017 18:45:50 +0100</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/word-frequency-vectors/</guid>
+      <description>
+
+&lt;p&gt;During some work with a Bioinformatics group at the University of Göttingen, we would use &lt;code&gt;word frequency vectors&lt;/code&gt; to determine &lt;em&gt;evolutionary distances between DNA or Protein sequences&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;A DNA sequence, when saved digitally, is nothing more than a string of characters. Each one corresponds to one of the four possible nucleotides. You could call this DNA&amp;rsquo;s alphabet \(\sum_{DNA}=\{A,C,T,G\}\). A chain of these nucleotides makes up the structure of a DNA strand.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you have somehow obtained two DNA sequences:
+$$S_1=AACCGT$$
+$$S_2=AACGT$$&lt;/p&gt;
+
+&lt;p&gt;Notice that they are &lt;em&gt;not equal in length&lt;/em&gt;: \(l(S_1)=6 \neq l(S_2)=5\). Three different mutations can happen to DNA sequences over time:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Substitution&lt;/em&gt; happens when a nucleotide turns into another one.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Deletion&lt;/em&gt; is when a nucleotide disappears.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Insertion&lt;/em&gt; is when a nucleotide appears.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The &lt;strong&gt;evolutionary distance&lt;/strong&gt; is then a distance measure that tells us &lt;em&gt;how different&lt;/em&gt; two sequences are. A naive approach could be comparing each character with the one in the same position in the other sequence. This works fine for the first three characters, but then it goes all wrong:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AACCGT (S1)
+AACGT
+✓✓✓✕✕✕
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It sure looks like the second &lt;code&gt;C&lt;/code&gt; has been &lt;em&gt;deleted&lt;/em&gt; from \(S_1\). And this &lt;strong&gt;character-wise checking fails if characters can be removed from one of the strings&lt;/strong&gt;.&lt;br /&gt;
+We are counting 3 errors in 6 positions using this method, resulting in a distance of \( \frac{3}{6}=0.5 \). Really, only one character had been deleted, so we should have found a distance of \( \frac{1}{6} \).&lt;/p&gt;
+
+&lt;p&gt;Now before word frequency vectors come to the rescue, let&amp;rsquo;s make a quick jump over to the field of Computer Networks. Here we are often interested in how well a packet transmitted over a channel is received. Depending on the specific channel characteristics, different errors can occur to transmissions:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Bit flips&lt;/em&gt; happen when a transmitted &lt;code&gt;1&lt;/code&gt; is flipped to a &lt;code&gt;0&lt;/code&gt; or vice-versa.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Bit deletions&lt;/em&gt; can also happen when part of the data stream is distorted.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Bit additions&lt;/em&gt; might also be possible in noisy channels.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;See a similarity? The two fields have exactly the same problem. In Computer Networks you would ask how high the error rate of a transmission is, given the input and the observed output.&lt;/p&gt;
+
+&lt;h4 id=&#34;how-can-word-frequency-vectors-help-us&#34;&gt;How can word frequency vectors help us?&lt;/h4&gt;
+
+&lt;p&gt;Taking \(S_1\) as an example again, we can construct its word frequency vector for all words of length &lt;code&gt;3&lt;/code&gt; (or any other number \(n&amp;gt;0)\). Start at the beginning of the sequence and note down the three characters you see:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AACCGT
+^^^
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now shift over the sequence until you can&amp;rsquo;t find another word of length &lt;code&gt;3&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  AACCGT
+1 ^^^
+2  ^^^
+3   ^^^
+4    ^^^
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You remember all occurrences of the found words:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AAC 1
+ACC 1
+CCG 1
+CGT 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And so you&amp;rsquo;ve found the &lt;code&gt;3&lt;/code&gt;-word-frequency-vector \( v \). What do we know about this vector? It holds the number of times you observe a character triplet. So except for the four triplets we&amp;rsquo;ve found, all other entries in the vector are &lt;code&gt;0&lt;/code&gt;.&lt;br /&gt;
+How many entries there? Well, as many as there are triplets. Each character \(c\in\sum_{DNA}\) has exactly 4 possibilities. So that&amp;rsquo;s 4 possibilities of choosing the first character. Then you again have 4 possibilties for the second one, and again for the third one. So in total we have&lt;/p&gt;
+
+&lt;p&gt;$$4\cdot 4\cdot 4=16=4^3=\left| \sum_{DNA} \right| ^n$$&lt;/p&gt;
+
+&lt;p&gt;which is the dimensionality of our triplet frequency vector on the DNA alphabet. This is easily adjusted for longer and shorter words, or different alphabets, like Proteins or English.&lt;/p&gt;
+
+&lt;h4 id=&#34;what-now&#34;&gt;What now?&lt;/h4&gt;
+
+&lt;p&gt;We know how to find these vectors for any sequence now. So to compare two sequences, we find the two vectors and calculate a distance between them. To start with, try the Euclidean distance \( d_{euclidean}(v,w) = \sqrt{\sum_{i=1}^n (v_i - w_i)^2} \).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  AACGT (S2)
+1 ^^^
+2  ^^^
+3   ^^^
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;so \( w \) in our case looks like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AAC 1
+ACG 1
+CGT 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;they have the triplets &lt;code&gt;AAC&lt;/code&gt;, &lt;code&gt;CGT&lt;/code&gt; in common, and \( v \) has &lt;code&gt;ACC&lt;/code&gt; and &lt;code&gt;CCG&lt;/code&gt;, while \( w \) has &lt;code&gt;ACG&lt;/code&gt;. Their distance is&lt;/p&gt;
+
+&lt;p&gt;$$ d_{euclidean}(v,w)=\sqrt{(1-1)^2 + (1-1)^2 + (1-0)^2 + (1-0)^2 + (0-1)^2} = 1,732 $$&lt;/p&gt;
+
+&lt;p&gt;Unfortunately this is not the error rate of \( \frac{1}{6} \) we were looking for either. However, it does enable us to compare more than 2 sequences with each other, because their pairwise distance metrics tell us how distant they are in relation to each other.&lt;br /&gt;
+In the world of Computer Networks we can compare different strategies that have an effect on bit error chances. Each strategy&amp;rsquo;s resulting vector distance allows us to compare strategies and how they affect bit error rates.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

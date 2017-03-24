@@ -40,7 +40,7 @@
                   {{ if (isset .Params "summary") }}
                   <p class="article__content--summary">{{.Params.summary}}</p>
                   {{ end }}
-                  {{ if (isset .Params "logo") }}
+                  {{ if and (.GetParam "showLogo") (isset .Params "logo")}}
                   <div class="article__content--image" style="background: url('{{.Params.logo}}');"></div>
                   {{ end }}
                   <div class="tags">

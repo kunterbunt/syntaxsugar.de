@@ -1,7 +1,8 @@
 +++
 tags = [""]
 summary = ""
-#logo = ""
+logo = ""
+showLogo = false
 draft = true
 hasMath = false
 +++
