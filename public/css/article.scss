@@ -3,6 +3,7 @@
 
 $teal: #1DE9B6;
 $title-height: 96px;
+$logo-height: 400px;
 
 .mdl-layout__header {
   background: white;
@@ -23,11 +24,6 @@ img {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  &.image--logo {
-    background-position: 10%;
-    background-size: cover;
-    height: 100%;
-  }
 }
 
 .container--logo {
@@ -45,8 +41,15 @@ img {
 
 .container--content {
   width: 100%;
+  .logo {
+    background-size: cover;
+    height: $logo-height;
+    max-height: 50%;
+  }
   .title {
-    background-color: $accent-color;
+    &.accented {
+      background-color: $accent-color;
+    }
     min-height: $title-height;
     line-height: $title-height;
     text-align: center;

@@ -10,8 +10,15 @@
       <div class="page-content">
         <article class="container--content">
           <div class="mdl-grid mdl-grid--no-spacing">
+            {{ if (isset .Params "logo")}}
+            <div class="image logo mdl-cell mdl-cell--12-col" style="background-image: url({{.Params.logo}})"></div>
+            {{ end }}
             <div class="mdl-cell mdl-cell--12-col">
+              {{ if (isset .Params "logo")}}
               <h3 class="title text--centered">{{.Title}}</h3>
+              {{ else }}
+              <h3 class="title text--centered accented">{{.Title}}</h3>
+              {{ end }}
             </div>
           </div>
           <div class="mdl-grid mdl-grid">

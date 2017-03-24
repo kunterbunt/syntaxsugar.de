@@ -69,10 +69,6 @@ img {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center; }
-  .image.image--logo {
-    background-position: 10%;
-    background-size: cover;
-    height: 100%; }
 
 .container--logo {
   height: 400px;
@@ -85,12 +81,17 @@ img {
 
 .container--content {
   width: 100%; }
+  .container--content .logo {
+    background-size: cover;
+    height: 400px;
+    max-height: 50%; }
   .container--content .title {
-    background-color: #FF5722;
     min-height: 96px;
     line-height: 96px;
     text-align: center;
     margin: 0; }
+    .container--content .title.accented {
+      background-color: #FF5722; }
   .container--content .content {
     min-height: calc(100vh - 64px - 64px - 101px - 32px); }
   .container--content p img {
