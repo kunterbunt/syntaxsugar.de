@@ -42,7 +42,7 @@
                   {{ end }}
                   <div class="tags">
                     {{ range .Params.tags }}
-                      <span><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></span>
+                      <span><object><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></object></span>
                     {{ end }}
                   </div>
                 </div>
