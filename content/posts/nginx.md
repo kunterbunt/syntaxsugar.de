@@ -39,7 +39,7 @@ So `enable` the sites:
 
 `sudo ln -s /etc/nginx/sites-available/domain2.de /etc/nginx/sites-enabled/domain2.de`
 
-Make sure your symbolic work by issuing `ls -l /etc/nginx/sites-enabled/` which should show
+Make sure your symbolic links work by issuing `ls -l /etc/nginx/sites-enabled/` which should show
 
 ```
 total 0

@@ -46,7 +46,7 @@ Let&amp;rsquo;s say you&amp;rsquo;re running a server with &lt;code&gt;nginx&lt;
 
 &lt;p&gt;&lt;code&gt;sudo ln -s /etc/nginx/sites-available/domain2.de /etc/nginx/sites-enabled/domain2.de&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Make sure your symbolic work by issuing &lt;code&gt;ls -l /etc/nginx/sites-enabled/&lt;/code&gt; which should show&lt;/p&gt;
+&lt;p&gt;Make sure your symbolic links work by issuing &lt;code&gt;ls -l /etc/nginx/sites-enabled/&lt;/code&gt; which should show&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;total 0
 lrwxrwxrwx 1 root root 44 Mar 23 19:10 domain1.de -&amp;gt; /etc/nginx/sites-available/domain1.de
