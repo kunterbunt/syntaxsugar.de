@@ -169,8 +169,6 @@ header a {
       .articles-container .article .article__content .article__content--image {
         background-color: #FF5722;
         height: 256px;
-        border-top: 2px solid #BDBDBD;
-        border-bottom: 2px solid #BDBDBD;
         background-size: cover !important;
         background-position: center !important;
         background-repeat: no-repeat !important; }

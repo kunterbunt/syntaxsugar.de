@@ -132,9 +132,7 @@ header {
 
       .article__content--image {
         background-color: $accent-color;
-        height: $article__content--image-height;
-        border-top: 2px solid $gray;
-        border-bottom: 2px solid $gray;
+        height: $article__content--image-height;        
         background-size: cover !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
