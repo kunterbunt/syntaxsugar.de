@@ -29,7 +29,7 @@
           <div class="vertical-line vertical-line--50px"></div>
           {{ range first 7 (where .Site.Pages "Section" "==" "posts") }}
             <div class="article">
-              <a href="{{.Permalink}}" title="{{.Title}}" target="_self">
+              <a href="{{.Permalink}}" title="{{.Params.summary}}" target="_self">
                 <span class="article__date">{{.Date.Format "January 2"}}</span>
                 <div class="article__content">
                   <div class="article__content--title-section">
@@ -37,6 +37,9 @@
                     <object><a href="{{ .Section | urlize }}" class="button button--top mdl-button mdl-js-button mdl-js-ripple-effect">{{.Section}}/</a></object>
                   </div>
                   <h4 class="article__content--title">{{.Title}}</h4>
+                  {{ if (isset .Params "summary") }}
+                  <p class="article__content--summary">{{.Params.summary}}</p>
+                  {{ end }}
                   {{ if (isset .Params "logo") }}
                   <div class="article__content--image" style="background: url('{{.Params.logo}}');"></div>
                   {{ end }}

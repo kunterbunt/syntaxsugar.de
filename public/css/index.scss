@@ -153,6 +153,13 @@ header {
         margin: 0 auto;
         -webkit-transition: box-shadow 0.15s;
       }
+
+      .article__content--summary {
+        color: $darkgray;
+        text-align: left;
+        padding: 0 8px;
+        font-size: 110%;
+      }
     }
 
     .tags {

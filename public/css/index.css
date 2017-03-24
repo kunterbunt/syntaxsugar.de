@@ -186,6 +186,11 @@ header a {
         min-height: 64px;
         margin: 0 auto;
         -webkit-transition: box-shadow 0.15s; }
+      .articles-container .article .article__content .article__content--summary {
+        color: #424242;
+        text-align: left;
+        padding: 0 8px;
+        font-size: 110%; }
     .articles-container .article .tags {
       padding: 0;
       margin: 0;
