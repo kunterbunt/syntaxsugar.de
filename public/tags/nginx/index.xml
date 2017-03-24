@@ -15,7 +15,7 @@
       
       <guid>http://syntaxsugar.de/posts/nginx/</guid>
       <description>&lt;p&gt;&lt;code&gt;nginx&lt;/code&gt; is an open-source HTTP server.&lt;br /&gt;
-Let&amp;rsquo;s say you&amp;rsquo;re running a server with &lt;code&gt;nginx&lt;/code&gt; and you have two domains &lt;code&gt;domain1.com&lt;/code&gt; and &lt;code&gt;domain2.com&lt;/code&gt;. You also have the HTML of two websites sitting at &lt;code&gt;~/web/domain1.com&lt;/code&gt; and &lt;code&gt;~/web/domain2.com&lt;/code&gt;. And now, of course, you want visitors that go to &lt;code&gt;domain1.com&lt;/code&gt; to be directed to the website at &lt;code&gt;~/web/domain1.com&lt;/code&gt; and in an analog way for the other domain.&lt;/p&gt;
+Let&amp;rsquo;s say you&amp;rsquo;re running a server with &lt;code&gt;nginx&lt;/code&gt; and you have two domains &lt;code&gt;domain1.com&lt;/code&gt; and &lt;code&gt;domain2.com&lt;/code&gt;. You also have the HTML of two websites sitting at &lt;code&gt;~/web/domain1.com/&lt;/code&gt; and &lt;code&gt;~/web/domain2.com/&lt;/code&gt;. And now, of course, you want visitors that go to &lt;code&gt;domain1.com&lt;/code&gt; to be directed to the website at &lt;code&gt;~/web/domain1.com/&lt;/code&gt; and in an analog way for the other domain.&lt;/p&gt;
 
 &lt;p&gt;For this you make the sites &lt;code&gt;available&lt;/code&gt; by creating their configuration files&lt;/p&gt;
 
