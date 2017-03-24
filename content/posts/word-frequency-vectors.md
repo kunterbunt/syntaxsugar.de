@@ -37,7 +37,7 @@ AACGT
 It sure looks like the second `C` has been *deleted* from \\(S\_1\\). And this **character-wise checking fails if characters can be removed from one of the strings**.   
 We are counting 3 errors in 6 positions using this method, resulting in a distance of \\( \frac{3}{6}=0.5 \\). Really, only one character had been deleted, so we should have found a distance of \\( \frac{1}{6} \\).
 
-Now before word frequency vectors come to the rescue, let's make a quick jump over to the field of Computer Networks. Here we are often interested in how well a packet transmitted over a channel is received. Depending on the specific channel characteristics, different errors can occur to transmissions:
+Now before word frequency vectors help with this problem, let's make a quick jump over to the field of Computer Networks. Here we are often interested in how well a packet transmitted over a channel is received. Depending on the specific channel characteristics, different errors can occur to transmissions:
 
 1. *Bit flips* happen when a transmitted `1` is flipped to a `0` or vice-versa.
 + *Bit deletions* can also happen when part of the data stream is distorted.

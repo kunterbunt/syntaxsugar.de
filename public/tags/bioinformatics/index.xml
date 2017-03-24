@@ -42,7 +42,7 @@ AACGT
 &lt;p&gt;It sure looks like the second &lt;code&gt;C&lt;/code&gt; has been &lt;em&gt;deleted&lt;/em&gt; from \(S_1\). And this &lt;strong&gt;character-wise checking fails if characters can be removed from one of the strings&lt;/strong&gt;.&lt;br /&gt;
 We are counting 3 errors in 6 positions using this method, resulting in a distance of \( \frac{3}{6}=0.5 \). Really, only one character had been deleted, so we should have found a distance of \( \frac{1}{6} \).&lt;/p&gt;
 
-&lt;p&gt;Now before word frequency vectors come to the rescue, let&amp;rsquo;s make a quick jump over to the field of Computer Networks. Here we are often interested in how well a packet transmitted over a channel is received. Depending on the specific channel characteristics, different errors can occur to transmissions:&lt;/p&gt;
+&lt;p&gt;Now before word frequency vectors help with this problem, let&amp;rsquo;s make a quick jump over to the field of Computer Networks. Here we are often interested in how well a packet transmitted over a channel is received. Depending on the specific channel characteristics, different errors can occur to transmissions:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;em&gt;Bit flips&lt;/em&gt; happen when a transmitted &lt;code&gt;1&lt;/code&gt; is flipped to a &lt;code&gt;0&lt;/code&gt; or vice-versa.&lt;/li&gt;
