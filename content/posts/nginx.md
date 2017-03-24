@@ -1,6 +1,7 @@
 +++
 tags = [
-  "nginx",
+  "server",
+  "nginx"
 ]
 summary = "How to configure nginx to serve two different HTML directories to two different domains."
 draft = false
