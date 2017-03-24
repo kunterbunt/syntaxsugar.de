@@ -1,7 +1,7 @@
 +++
 summary = "Word frequency vectors applied on evolutionary distances between DNA sequences and on bit error rates."
-logo = ""
-showLogo = false
+logo = "/imgs/logos/phylogenetic-tree.png"
+showLogo = true
 draft = false
 hasMath = true
 date = "2017-03-24T18:45:50+01:00"
