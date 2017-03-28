@@ -75,7 +75,7 @@ CGT 1
 And so you've found the `3`-word-frequency-vector \\( v \\). What do we know about this vector? It holds the number of times you observe a character triplet. So except for the four triplets we've found, all other entries in the vector are `0`.   
 How many entries there? Well, as many as there are triplets. Each character \\(c\in\sum\_{DNA}\\) has exactly 4 possibilities. So that's 4 possibilities of choosing the first character. Then you again have 4 possibilties for the second one, and again for the third one. So in total we have
 
-$$4\cdot 4\cdot 4=16=4^3=\left| \sum\_{DNA} \right| ^n$$
+$$4\cdot 4\cdot 4=64=4^3=\left| \sum\_{DNA} \right| ^n$$
 
 which is the dimensionality of our triplet frequency vector on the DNA alphabet. This is easily adjusted for longer and shorter words, or different alphabets, like Proteins or English.
 
