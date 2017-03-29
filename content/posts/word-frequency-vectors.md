@@ -105,3 +105,5 @@ Unfortunately this is not the error rate of \\( \frac{1}{6} \\) we were looking 
 In the world of Computer Networks we can compare different strategies that have an effect on bit error chances. Each strategy's resulting vector distance allows us to compare strategies and how they affect bit error rates.
 
 This pairwise comparison of sequences, or strategies, wouldn't have been possible with our naive character-wise checking idea. With word frequency vector distances we can depict the similarity of species by finding distances between their genomes' DNA sequences and visualizing them in a [phylogenetic tree](https://en.wikipedia.org/wiki/Phylogenetic_tree), or try different networking techniques and protocols and see how they perform compared to each other.
+
+An implementation in `C++` can be found [in this post]({{< relref "posts/lexicographical-index.md" >}}).

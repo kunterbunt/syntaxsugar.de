@@ -2,11 +2,11 @@
 draft = false
 hasMath = true
 tags = [
-  "",
+  "bioinformatics", "computer-networks", "c++"
 ]
 date = "2017-03-28T14:21:39+02:00"
 title = "Lexicographical index calculation"
-summary = "Finding the index in a container that holds the frequency of elements in lexicographical order."
+summary = "Finding the index in a container that holds the frequency of elements in lexicographical order. Includes C++ source code for word frequency vectors (that makes use of this index calculation)."
 logo = ""
 showLogo = false
 +++

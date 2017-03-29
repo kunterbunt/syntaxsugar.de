@@ -1,8 +1,8 @@
 +++
-tags = [""]
-summary = ""
-logo = ""
-showLogo = false
 draft = true
+summary = ""
+tags = [""]
+showLogo = false
+logo = ""
 hasMath = false
 +++
