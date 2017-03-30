@@ -6,8 +6,61 @@
     <description>Recent content on Syntax Sugar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Mar 2017 16:43:13 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 30 Mar 2017 20:01:49 +0200</lastBuildDate>
     <atom:link href="http://syntaxsugar.de/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to safely SSH into your own computer</title>
+      <link>http://syntaxsugar.de/posts/safe-ssh-to-own-computer/</link>
+      <pubDate>Thu, 30 Mar 2017 20:01:49 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/safe-ssh-to-own-computer/</guid>
+      <description>&lt;p&gt;I came across a situation where I had to &lt;code&gt;ssh&lt;/code&gt; into my personal computer from a remote server. Most of the time, you don&amp;rsquo;t want to do this. There&amp;rsquo;s &lt;em&gt;botnets&lt;/em&gt; and other &lt;em&gt;evil-doers&lt;/em&gt; out there that try to break into easily accessible machines, and a password-protected SSH connection is easily broken into.&lt;br /&gt;
+&lt;em&gt;So don&amp;rsquo;t do this unless you really need to!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Okay, so you really need to. What do we need to do?&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Tell your router to forward incoming transmissions for your &lt;code&gt;SSH port&lt;/code&gt; to your machine.&lt;/em&gt;&lt;br /&gt;
+The specific procedure depends on your router and I&amp;rsquo;ll leave it to you to find out how to do it. What&amp;rsquo;s important, though, is that you should &lt;strong&gt;change the default port&lt;/strong&gt;. Botnets, script kiddies and everybody else that wants to break into your system will try the default port &lt;code&gt;22&lt;/code&gt; first. If that doesn&amp;rsquo;t work, some might move on. Others might try more ports. Make them work for the right port, choose something random and large, in the &lt;code&gt;10000 to 64000&lt;/code&gt; range. &lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers&#34;&gt;This is a list of used ports, so pick one that&amp;rsquo;s not on this list!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Start your SSH daemon&lt;/em&gt;&lt;br /&gt;
+At least on my &lt;code&gt;arch linux&lt;/code&gt; system, the daemon that listens for incoming connections is not enabled by default.&lt;br /&gt;
+You have two choices:&lt;br /&gt;
+1) &lt;code&gt;start&lt;/code&gt; it with &lt;code&gt;sudo systemctl start sshd.service&lt;/code&gt;. An instance will be running until you restart your PC. If you only occasionally want to access your machine from a remote server, then &lt;strong&gt;this is the safer way&lt;/strong&gt;.&lt;br /&gt;
+2) &lt;code&gt;enable&lt;/code&gt; it with &lt;code&gt;sudo systemctl enable sshd.service&lt;/code&gt;. This will auto-start the daemon upon boot, too.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Tell SSH to listen on your chosen port&lt;/em&gt;&lt;br /&gt;
+Open up your &lt;strong&gt;&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;&lt;/strong&gt; file. The idea here is that many options are present in the file and set to their default values, &lt;em&gt;and they&amp;rsquo;re commented out&lt;/em&gt;. So, to change them, &lt;em&gt;uncomment&lt;/em&gt; them by removing the leading &lt;code&gt;#&lt;/code&gt; and then you can change their default values.&lt;br /&gt;
+Fine the line for &lt;code&gt;#Port 22&lt;/code&gt; and change it to &lt;code&gt;Port &amp;lt;your port number&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Disable root login&lt;/em&gt;&lt;br /&gt;
+For the sake of completeness, find the line that starts with &lt;code&gt;#PermitRootLogin&lt;/code&gt; and change it to &lt;code&gt;PermitRootLogin no&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Disable password authentication&lt;/em&gt;&lt;br /&gt;
+All passwords are evil if you have the possibility of using &lt;em&gt;public key authentication&lt;/em&gt;. So find the line &lt;code&gt;#PasswordAuthentication yes&lt;/code&gt; and change it to &lt;code&gt;PasswordAuthentication no&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Enable public key authentication&lt;/em&gt;&lt;br /&gt;
+You kinda need one way of getting in, right? &lt;strong&gt;This should be enabled by default&lt;/strong&gt; at the time of writing, but check anyway: &lt;code&gt;#PubkeyAuthentication yes&lt;/code&gt; is the magic line. If you find it, leave it, it&amp;rsquo;s the default. Or remove the &lt;code&gt;#&lt;/code&gt;, whatever.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Generate a public/private key pair&lt;/em&gt;&lt;br /&gt;
+&lt;strong&gt;On the remote server&lt;/strong&gt; generate a key pair with &lt;code&gt;ssh-keygen -t rsa -b 4096 -C &amp;quot;your_email@example.com&amp;quot;&lt;/code&gt;. Follow the prompts, set a password.&lt;br /&gt;
+Now start an &lt;code&gt;ssh-agent&lt;/code&gt;: &lt;code&gt;eval &amp;quot;$(ssh-agent -s)&amp;quot;&lt;/code&gt;.&lt;br /&gt;
+And add the key to the agent, this way you don&amp;rsquo;t have to type in your key&amp;rsquo;s password every time you use it: &lt;code&gt;ssh-add ~/.ssh/&amp;lt;your private key file&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Tell your system to allow this key&lt;/em&gt;&lt;br /&gt;
+&lt;strong&gt;On your home system&lt;/strong&gt; open &lt;strong&gt;&lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt;&lt;/strong&gt; (create it if it doesn&amp;rsquo;t exist) and add the content of your &lt;strong&gt;remote system&amp;rsquo;s &lt;code&gt;~/.ssh/&amp;lt;your public key file&amp;gt;&lt;/code&gt;&lt;/strong&gt;. Just copy the entire content, it should be on one line and contain lots of random characters.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Restrict this key to a particular IP address&lt;/em&gt;&lt;br /&gt;
+Another nice security measure. In your &lt;strong&gt;home system&amp;rsquo;s &lt;code&gt;~/.ssh/authorized_keys&lt;/code&gt;&lt;/strong&gt; (the one you just edited), prepend to the line from last step this: &lt;code&gt;from=&amp;quot;1.2.3.4&amp;quot;&lt;/code&gt; where you of course replace the IP with your remote server&amp;rsquo;s IP.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Install fail2ban&lt;/em&gt;&lt;br /&gt;
+&lt;code&gt;fail2ban&lt;/code&gt; is a cool tool that automatically blocks IP addresses that seem suspicious by trying too many times to get into your system unsuccessfully. This would be your last line of defense. All you need to do is to install and enable it. On &lt;code&gt;arch&lt;/code&gt; it&amp;rsquo;d be: &lt;code&gt;sudo pacman -S fail2ban&lt;/code&gt; and then &lt;code&gt;sudo systemctl enable fail2ban.service&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Create a new user with limited rights&lt;/em&gt;&lt;br /&gt;
+Create a new group: &lt;code&gt;sudo groupadd sshusergroup&lt;/code&gt;&lt;br /&gt;
+Add a new user: &lt;code&gt;sudo useradd -m -g sshusergroup -s /bin/bash sshuser&lt;/code&gt;&lt;br /&gt;
+Restrict SSH to allow only this user: add the line &lt;code&gt;AllowUsers sshuser&lt;/code&gt; to &lt;strong&gt;&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Restart your daemon&lt;/em&gt;&lt;br /&gt;
+To load all these settings, reload &lt;code&gt;sshd&lt;/code&gt; with &lt;code&gt;sudo systemctl restart sshd.service&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You could call this a very &lt;strong&gt;paranoid approach&lt;/strong&gt;. Just the way I like it, because you reaaally don&amp;rsquo;t want random people on your personal computer. I can&amp;rsquo;t think of a way of breaking into this system via SSH anymore.&lt;br /&gt;
+Let&amp;rsquo;s recap: The SSH daemon is not always running, only when you need it (if you didn&amp;rsquo;t enable it). If it is, then it only allows key authentication, which is pretty safe. Also it only allows this if it comes from the single IP you specified. And if someone is still able to try different keys, then if he tries too many, he&amp;rsquo;s banned by &lt;code&gt;fail2ban&lt;/code&gt;. And if all security measures fail, then he can only login to the &lt;code&gt;sshuser&lt;/code&gt; user, which is part of no groups to speak of, has &lt;em&gt;no sudo rights&lt;/em&gt; and can&amp;rsquo;t really do a thang outside of his home directory.&lt;/p&gt;
+
+&lt;p&gt;On the &lt;strong&gt;remote server&lt;/strong&gt; you can now ssh into your machine with &lt;code&gt;ssh -p &amp;lt;your port&amp;gt; sshuser@&amp;lt;your IP&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Reading module and simulation parameters in OMNeT&#43;&#43;</title>
@@ -45,7 +98,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;but apparently that &lt;em&gt;also&lt;/em&gt; doesn&amp;rsquo;t work. Go figure.&lt;br /&gt;
-After some significant tinkering, I finally found in the documentation that you can get access to the configuration via the globally available &lt;code&gt;getEnvir()-&amp;gt;getConfig()&lt;/code&gt;. From there you have functions that get you want you want, such as&lt;/p&gt;
+After some significant tinkering, I finally found in the documentation that you can get access to the configuration via the globally available &lt;code&gt;getEnvir()-&amp;gt;getConfig()&lt;/code&gt;. From there you have functions that get you what you want, such as&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;getAsDouble(cConfigOption *option, double fallbackValue=0)
 &lt;/code&gt;&lt;/pre&gt;
@@ -492,45 +545,6 @@ lrwxrwxrwx 1 root root 41 Mar 23 19:15 domain2.de -&amp;gt; /etc/nginx/sites-ava
       
       <guid>http://syntaxsugar.de/more/empty/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Some really nice title that&#39;s also really long</title>
-      <link>http://syntaxsugar.de/posts/test/</link>
-      <pubDate>Sun, 19 Mar 2017 14:01:30 +0100</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/test/</guid>
-      <description>&lt;p&gt;$$ \sum (a+b) $$&lt;/p&gt;
-
-&lt;p&gt;inline stuff \( \sum_{i=1}^n n^2 \) bla&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;**&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;Hello Wolrd&amp;quot;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Inline &lt;code&gt;code&lt;/code&gt; is also cool&lt;/p&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis vitae magna non lacinia. Quisque vestibulum bibendum purus, ut iaculis justo ultricies sit amet. Nulla nec ornare dui. Suspendisse potenti. Vestibulum sed mauris lacinia, suscipit arcu vitae, vulputate sapien. Aenean accumsan ante diam, et maximus quam porttitor non. Etiam congue turpis ex, id porta magna gravida id. Maecenas pretium urna vitae nisl aliquet fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin quam erat, placerat non ligula eget, pellentesque gravida neque.&lt;/p&gt;
-
-&lt;p&gt;Donec suscipit leo ut tempus semper. Suspendisse potenti. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris rhoncus pharetra elit, eu venenatis libero tempor non. Donec imperdiet lacus et magna pellentesque molestie at ac tellus. Mauris finibus magna at leo maximus, sit amet varius risus ultricies. Quisque a ultricies erat. Vestibulum eleifend, odio nec ornare tincidunt, erat turpis sollicitudin dui, ut hendrerit neque nisl sed dolor. Donec ornare ipsum turpis, nec vehicula mi dapibus et. Quisque vel posuere ipsum.&lt;/p&gt;
-
-&lt;p&gt;Suspendisse non libero ac leo placerat varius. Etiam convallis molestie nunc, at pulvinar tellus blandit vel. Phasellus aliquam dolor sit amet sem volutpat, sit amet vestibulum ligula pulvinar. Cras tristique pretium nisl, vel porttitor erat posuere eget. In bibendum orci vel vulputate aliquam. Nunc vulputate felis quis laoreet luctus. Nunc sodales faucibus augue. Cras quam est, malesuada ac orci non, mollis vestibulum sapien.&lt;/p&gt;
-
-&lt;p&gt;Cras eleifend condimentum sagittis. Praesent et orci id ante pretium rutrum nec id ipsum. Nullam et felis suscipit, sodales leo at, molestie sapien. Vivamus semper erat vitae mi euismod, vel pretium sapien interdum. Aliquam consequat pretium ullamcorper. In fringilla vestibulum lectus, eget convallis ex mollis eu. In et augue sit amet diam finibus mollis. Maecenas tristique lectus quam, nec bibendum ligula vulputate quis. Etiam blandit ante id elit efficitur, porta dapibus mi pharetra. Vestibulum aliquam vehicula tincidunt. Proin sagittis vehicula ante.&lt;/p&gt;
-
-&lt;p&gt;Sed tincidunt non ante laoreet posuere. Phasellus porttitor felis sed posuere ultrices. Aliquam auctor ipsum at tortor mattis, non malesuada nunc aliquam. Curabitur feugiat leo in velit tincidunt vulputate. Duis sit amet neque sodales, ultricies purus bibendum, fermentum erat. Proin mollis mi at diam elementum pharetra. Nam vestibulum ligula orci, id suscipit lectus egestas vitae. Aliquam venenatis augue nec nulla lobortis tempus. Nulla venenatis, mi maximus cursus semper, nunc nibh accumsan justo, ac auctor nulla augue et massa. Proin sollicitudin bibendum mollis. Quisque et dui ac nulla pellentesque imperdiet a sit amet nisi. Sed arcu dolor, gravida non justo at, auctor maximus ipsum. Nullam ex augue, pulvinar commodo mi id, rhoncus facilisis nisl.&lt;/p&gt;
-
-&lt;p&gt;Morbi nec odio sit amet lorem tempus rhoncus. Suspendisse potenti. Aenean vitae dui varius, euismod mauris sit amet, porttitor urna. Nam at enim congue, congue neque a, lacinia ante. Sed auctor mollis dignissim. In at sem bibendum, interdum dui non, mattis libero. Integer neque diam, mollis eget turpis vitae, cursus laoreet arcu.&lt;/p&gt;
-
-&lt;p&gt;Vivamus nulla elit, placerat ut odio a, faucibus sollicitudin elit. Proin gravida lorem nec dolor ornare elementum scelerisque sit amet purus. Quisque pellentesque felis eget odio gravida, imperdiet imperdiet augue scelerisque. Nam id enim vitae nisl placerat dictum. Aenean rhoncus mauris vitae euismod imperdiet. Sed egestas dictum elit sed elementum. Morbi egestas erat nisl, a mollis arcu tempus in. Nunc lectus ligula, luctus id maximus vitae, hendrerit vulputate neque. Morbi mollis justo vitae pellentesque imperdiet. Phasellus aliquet vehicula nunc eget mollis. Fusce vel sagittis neque. Nam sollicitudin, ipsum eu dictum semper, velit quam volutpat nibh, eget laoreet risus massa eu turpis. Donec nisi lectus, pulvinar sit amet congue eget, mattis nec magna. Etiam sodales nulla diam, sit amet scelerisque nibh iaculis in. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec non molestie orci.&lt;/p&gt;
-
-&lt;p&gt;Sed lacinia dictum tellus. Maecenas in ante nec purus volutpat volutpat vel id nisi. In eu euismod eros, eget vulputate sem. Vivamus pharetra nec dui ultricies auctor. Mauris tellus lorem, molestie vel vulputate nec, dictum in justo. Donec ornare dui a ante porta, eget rutrum ligula interdum. Cras gravida ornare nisi, in gravida erat mollis eu. Sed sed lectus vel nibh venenatis dapibus eget id urna.&lt;/p&gt;
-
-&lt;p&gt;Pellentesque non lorem vel ipsum fermentum elementum quis vestibulum enim. Praesent nec luctus turpis. Aenean at efficitur tellus. Mauris finibus convallis diam vulputate volutpat. Quisque quam mauris, finibus in volutpat et, feugiat ac arcu. Nam eget orci eu purus imperdiet scelerisque vel quis nunc. In quis porttitor nulla. In ornare vitae eros ac ultricies. Vivamus facilisis id metus eu varius. Nullam iaculis finibus mollis. Maecenas feugiat neque at condimentum tristique. Fusce tincidunt velit urna, ut facilisis eros condimentum in.&lt;/p&gt;
-
-&lt;p&gt;Pellentesque dignissim, mi interdum imperdiet ullamcorper, eros justo hendrerit est, in lobortis dolor ipsum pharetra diam. Vestibulum feugiat suscipit diam ut condimentum. Ut commodo eros ac nunc laoreet dictum. Duis pharetra tortor et augue gravida imperdiet. Sed vitae tellus sollicitudin, suscipit turpis vitae, convallis nisi. Sed dictum turpis sit amet dolor lacinia efficitur. Nam quis tempus quam, vitae posuere lorem. Donec neque ipsum, pulvinar et finibus sed, commodo ut turpis. Aenean luctus quam eu felis porttitor mollis. Praesent vel pulvinar dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam semper massa in risus cursus maximus. Phasellus vitae egestas dui.&lt;/p&gt;
-</description>
     </item>
     
   </channel>

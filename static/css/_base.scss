@@ -33,7 +33,7 @@ a {
 pre > code {
   text-color: $text-color;
 }
-p > code {
+p > code, li > code {
   background-color: $code-highlight;
   padding: 2px 4px;
   font-size: 90%;

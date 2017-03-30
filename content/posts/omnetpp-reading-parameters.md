@@ -41,7 +41,7 @@ This won't work with general parameters set in your `omnetpp.ini`, though, becau
 getSystemModule()->par(...) // doesn't work
 ```
 but apparently that *also* doesn't work. Go figure.   
-After some significant tinkering, I finally found in the documentation that you can get access to the configuration via the globally available `getEnvir()->getConfig()`. From there you have functions that get you want you want, such as
+After some significant tinkering, I finally found in the documentation that you can get access to the configuration via the globally available `getEnvir()->getConfig()`. From there you have functions that get you what you want, such as
 ```
 getAsDouble(cConfigOption *option, double fallbackValue=0)
 ```   

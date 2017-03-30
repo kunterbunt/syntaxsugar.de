@@ -18,7 +18,7 @@ a {
 pre > code {
   text-color: #090909; }
 
-p > code {
+p > code, li > code {
   background-color: #EFF0F1;
   padding: 2px 4px;
   font-size: 90%; }
