@@ -51,7 +51,7 @@
 <span class="nv">target</span><span class="o">=</span><span class="nv">$2</span>
 <span class="nv">numRx</span><span class="o">=</span><span class="nv">$3</span>
 
-<span class="k">if</span> <span class="o">[</span> -f /tmp/foo.txt <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="k">if</span> <span class="o">[</span> -f <span class="nv">$target</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 	rm <span class="nv">$target</span>
 <span class="k">fi</span>
 touch <span class="nv">$target</span>

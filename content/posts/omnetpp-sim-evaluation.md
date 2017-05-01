@@ -29,7 +29,7 @@ file=$1
 target=$2
 numRx=$3
 
-if [ -f /tmp/foo.txt ]; then
+if [ -f $target ]; then
 	rm $target
 fi
 touch $target
