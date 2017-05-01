@@ -6,8 +6,53 @@
     <description>Recent content in Posts-rss on Syntax Sugar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 May 2017 16:41:12 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 01 May 2017 16:57:42 +0200</lastBuildDate>
     <atom:link href="http://syntaxsugar.de/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Simulation evaluation in OMNeT&#43;&#43;</title>
+      <link>http://syntaxsugar.de/posts/omnetpp-sim-evaluation/</link>
+      <pubDate>Mon, 01 May 2017 16:57:42 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/omnetpp-sim-evaluation/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://omnetpp.org/&#34;&gt;OMNeT++ network simulator&lt;/a&gt; allows for extensive and modular simulation of network scenarios. When simulation concept, implementation, configuration and running are said and done, the evaluation is the next step. Some built-in functionalities of the IDE allow for an idea on how the network performed. This was cumbersone for me personally, and I prefer to evaluate the numerical scalar result values in &lt;code&gt;MATLAB&lt;/code&gt; anyway.&lt;/p&gt;
+
+&lt;p&gt;When you run a large number of simulations, then you don&amp;rsquo;t want to open each file in the IDE, select the relevant entries and export them to a &lt;code&gt;.csv&lt;/code&gt; which MATLAB would understand. It&amp;rsquo;s possible, sure, but also annoying. &lt;code&gt;grep&lt;/code&gt; to the rescue: I just parse the scalar &lt;code&gt;.sca&lt;/code&gt; files and look for the parameters of interest to me.&lt;/p&gt;
+
+&lt;p&gt;This &lt;code&gt;parseScalar&lt;/code&gt; bash script automates the parsing:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;((&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$#&lt;/span&gt; &amp;lt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+	&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;Usage: parseScalar &amp;lt;scalar file&amp;gt; &amp;lt;output file&amp;gt; &amp;lt;number of Rx devices&amp;gt;&amp;quot;&lt;/span&gt;
+	&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+
+
+&lt;span class=&#34;nv&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$1&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$2&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;numRx&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$3&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; -f /tmp/foo.txt &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+	rm &lt;span class=&#34;nv&#34;&gt;$target&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+touch &lt;span class=&#34;nv&#34;&gt;$target&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;((&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; i&amp;lt;&lt;span class=&#34;nv&#34;&gt;$numRx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+	grep -e &lt;span class=&#34;s2&#34;&gt;&amp;quot;^scalar LTECell.ueD2DRx\[&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$i&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\].udpApp\[0\][[:space:]]\{1,\}rcvdPk:sum(packetBytes)[[:space:]]\{1,\}&amp;quot;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$file&lt;/span&gt;  &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; awk &lt;span class=&#34;s1&#34;&gt;&amp;#39;{print $4}&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class=&#34;nv&#34;&gt;$target&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can use this as a starting point. I was interested in each &lt;code&gt;ueD2DRx[$i]&lt;/code&gt; device, specifically in the &lt;code&gt;sum(packetBytes)&lt;/code&gt; of its &lt;code&gt;udpApp[0]&lt;/code&gt;. Adjust for your needs; the biggest struggle had been being compatible with the spacing of the &lt;code&gt;.sca&lt;/code&gt; file. It outputs only the numerical values into &lt;code&gt;$target&lt;/code&gt;, one line for each value.&lt;/p&gt;
+
+&lt;p&gt;Another hint: when you&amp;rsquo;re still making sure your simulations do what they&amp;rsquo;re supposed to, you can save the entire event log of a simulation to a file and then go through it using grep to filter only what&amp;rsquo;s interesting. To do that, put into your configuration &lt;code&gt;omnetpp.ini&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cmdenv-express-mode = false
+cmdenv-output-file = ${resultdir}/lastrun.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will save the event log to a &lt;code&gt;lastrun.log&lt;/code&gt; file. It&amp;rsquo;s going to be quite huge, so &lt;code&gt;grep&lt;/code&gt; the contents for e.g. a point in time or all output from a specific module.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Implementing D2D mode selection in OMNeT&#43;&#43;/SIMUlte</title>
