@@ -35,7 +35,7 @@ So this is a general how-to on implementing a scheduling algorithm for the OMNeT
 1. Create your implementation files at `<simulte dir>/src/stack/mac/scheduling_modules/<your scheduler.{cc, h}`
 + Have your class inherit from `LteScheduler`, and include `omnetpp.h, LteScheduler.h, LteCommon.h`.
 + Open `LteCommon.h`, look for `enum SchedDiscipline { ... }` and add your scheduler class to the `enum`. Also look for and add to `const SchedDisciplineTable disciplines[] = { ELEM(DRR), ..., ELEM(YOUR_SCHEDULER)};`. Don't forget to `#include <YOUR_SCHEDULER>` in this file.
-+ Now look for `LteSchedulerEnb::getScheduler(SchedDiscipline discipline)` and modify it to include your scheduler - just follow the already present examples. Of course, `#include <YOUR_SCHEDULER` once again.
++ Now look for `LteSchedulerEnb::getScheduler(SchedDiscipline discipline)` and modify it to include your scheduler - just follow the already present examples. Of course, `#include <YOUR_SCHEDULER>` once again.
 + While in `LteSchedulerEnb.h`, also add your class as a `friend class`.
 + Now you can get to the implementation of your scheduler. The `enum` from before tells you the keyword you can put into your `omnetpp.ini` so that your scheduler is used:
 
@@ -126,7 +126,7 @@ protected:
                 "OK");
     }
 
-  LteReassignment::SchedulingResult LteReassignment::schedule(MacCid connectionId, Band band) {
+  LteReassignment::SchedulingResult schedule(MacCid connectionId, Band band) {
     bool terminate = false;
     bool active = true;
     bool eligible = true;

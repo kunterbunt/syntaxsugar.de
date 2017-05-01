@@ -60,7 +60,7 @@
 <li>Create your implementation files at <code>&lt;simulte dir&gt;/src/stack/mac/scheduling_modules/&lt;your scheduler.{cc, h}</code></li>
 <li>Have your class inherit from <code>LteScheduler</code>, and include <code>omnetpp.h, LteScheduler.h, LteCommon.h</code>.</li>
 <li>Open <code>LteCommon.h</code>, look for <code>enum SchedDiscipline { ... }</code> and add your scheduler class to the <code>enum</code>. Also look for and add to <code>const SchedDisciplineTable disciplines[] = { ELEM(DRR), ..., ELEM(YOUR_SCHEDULER)};</code>. Don&rsquo;t forget to <code>#include &lt;YOUR_SCHEDULER&gt;</code> in this file.</li>
-<li>Now look for <code>LteSchedulerEnb::getScheduler(SchedDiscipline discipline)</code> and modify it to include your scheduler - just follow the already present examples. Of course, <code>#include &lt;YOUR_SCHEDULER</code> once again.</li>
+<li>Now look for <code>LteSchedulerEnb::getScheduler(SchedDiscipline discipline)</code> and modify it to include your scheduler - just follow the already present examples. Of course, <code>#include &lt;YOUR_SCHEDULER&gt;</code> once again.</li>
 <li>While in <code>LteSchedulerEnb.h</code>, also add your class as a <code>friend class</code>.</li>
 <li>Now you can get to the implementation of your scheduler. The <code>enum</code> from before tells you the keyword you can put into your <code>omnetpp.ini</code> so that your scheduler is used:</li>
 </ol>
@@ -149,7 +149,7 @@
                 <span class="s">&quot;OK&quot;</span><span class="p">);</span>
     <span class="p">}</span>
 
-  <span class="n">LteReassignment</span><span class="o">::</span><span class="n">SchedulingResult</span> <span class="n">LteReassignment</span><span class="o">::</span><span class="n">schedule</span><span class="p">(</span><span class="n">MacCid</span> <span class="n">connectionId</span><span class="p">,</span> <span class="n">Band</span> <span class="n">band</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">LteReassignment</span><span class="o">::</span><span class="n">SchedulingResult</span> <span class="n">schedule</span><span class="p">(</span><span class="n">MacCid</span> <span class="n">connectionId</span><span class="p">,</span> <span class="n">Band</span> <span class="n">band</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">bool</span> <span class="n">terminate</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
     <span class="kt">bool</span> <span class="n">active</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
     <span class="kt">bool</span> <span class="n">eligible</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
