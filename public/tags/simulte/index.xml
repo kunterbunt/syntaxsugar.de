@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Syntax Sugar</title>
-    <link>http://syntaxsugar.de/tags/omnet&#43;&#43;/index.xml</link>
+    <link>http://syntaxsugar.de/tags/simulte/index.xml</link>
     <description>Recent content on Syntax Sugar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://syntaxsugar.de/tags/omnet&#43;&#43;/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://syntaxsugar.de/tags/simulte/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Implementing an LTE resource scheduler in OMNeT&#43;&#43;/SIMUlte</title>
@@ -153,62 +153,6 @@
   &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Reading module and simulation parameters in OMNeT&#43;&#43;</title>
-      <link>http://syntaxsugar.de/posts/omnetpp-reading-parameters/</link>
-      <pubDate>Wed, 29 Mar 2017 16:43:13 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/omnetpp-reading-parameters/</guid>
-      <description>&lt;p&gt;I had a hard time figuring out how to access general simulation parameters such as the maximum simulation time &lt;code&gt;max-sim-time&lt;/code&gt; at runtime from whatever module needs it.&lt;/p&gt;
-
-&lt;p&gt;For &lt;code&gt;modules&lt;/code&gt; it is rather straightforward. From any &lt;code&gt;cModule&lt;/code&gt; object, there&amp;rsquo;s a &lt;code&gt;par(const char* parname)&lt;/code&gt; function. Say you&amp;rsquo;re writing a module named &lt;code&gt;OmniscientEntity&lt;/code&gt; (as I did), and it is defined in &lt;strong&gt;&lt;code&gt;OmniscientEntity.ned&lt;/code&gt;&lt;/strong&gt; as this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;simple OmniscientEntity {            	    
-    parameters:
-        // Used for CQI computation. Copy over from your channel.xml.
-        double targetBler = default(0.001);
-        double lambdaMinTh = default(0.02);
-        double lambdaMaxTh = default(0.2);
-        double lambdaRatioTh = default(20);
-        // The simulation time at which final configuration takes place.
-        double configTimepoint = default(0.005);
-        // The entity will take a snapshot of the some network statistics every x seconds.
-        double updateInterval = default(0.05);
-        // 180kHz is LTE&#39;s bandwidth per resource block as per its specification.
-        double resourceBlockBandwidth @unit(kHz) = default(180kHz);
-    @display(&amp;quot;i=block/table&amp;quot;);
-    @class(OmniscientEntity);    
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;then to access its parameter &lt;code&gt;targetBler&lt;/code&gt;, just call &lt;code&gt;par(&amp;quot;targetBler&amp;quot;)&lt;/code&gt; on its object and that&amp;rsquo;s it. You can traverse the module hierarchy using &lt;code&gt;getParentModule()&lt;/code&gt;, or get to the top via &lt;code&gt;getSystemModule()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This won&amp;rsquo;t work with general parameters set in your &lt;code&gt;omnetpp.ini&lt;/code&gt;, though, because they&amp;rsquo;re not part of your module. I had thought that you would be able to access them via&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;getSystemModule()-&amp;gt;par(...) // doesn&#39;t work
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;but apparently that &lt;em&gt;also&lt;/em&gt; doesn&amp;rsquo;t work. Go figure.&lt;br /&gt;
-After some significant tinkering, I finally found in the documentation that you can get access to the configuration via the globally available &lt;code&gt;getEnvir()-&amp;gt;getConfig()&lt;/code&gt;. From there you have functions that get you what you want, such as&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;getAsDouble(cConfigOption *option, double fallbackValue=0)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Cool, but what&amp;rsquo;s a &lt;code&gt;cConfigOption&lt;/code&gt;? It has a big, nasty constructor:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cConfigOption(const char* name, bool isGlobal, Type type, const char* unit, const char* defaultValue, const char* description)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Learning by example is easiest, so to finally find the &lt;code&gt;sim-time-limit&lt;/code&gt; you&amp;rsquo;re looking for, do this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cConfigOption simTimeConfig(&amp;quot;sim-time-limit&amp;quot;, true, cConfigOption::Type::CFG_DOUBLE, &amp;quot;s&amp;quot;, &amp;quot;300&amp;quot;, &amp;quot;&amp;quot;);
-double maxSimTime = getEnvir()-&amp;gt;getConfig()-&amp;gt;getAsDouble(&amp;amp;simTimeConfig);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and adjust as you need for other parameters. Talk about easy.&lt;/p&gt;
 </description>
     </item>
     
