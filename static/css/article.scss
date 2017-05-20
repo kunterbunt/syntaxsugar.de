@@ -4,6 +4,7 @@
 $teal: #1DE9B6;
 $title-height: 96px;
 $logo-height: 400px;
+$background-color: #D5CDC2;
 
 .mdl-layout__header {
   background: white;
@@ -40,7 +41,7 @@ img {
 }
 
 .container--content {
-  width: 100%;
+  width: 100%;  
   .logo {
     background-size: cover;
     height: $logo-height;

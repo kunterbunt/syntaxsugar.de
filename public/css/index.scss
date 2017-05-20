@@ -5,7 +5,8 @@ $article__content--title-height: 32px;
 $article__content--image-height: 256px;
 $article__content-height: 64px;
 
-$background-color: #ECEFF1;
+$background-color: #D5CDC2;
+$post-color: #ECEFF1;
 $line-color: $darkgray;
 
 header {
@@ -122,7 +123,7 @@ header {
     }
     .article__content {
       color: black;
-      background-color: $almost-white;
+      background-color: $post-color;
       @include box-shadow-default();
       @include rounded(0.1em);
       margin-bottom: 13px;
@@ -132,7 +133,7 @@ header {
 
       .article__content--image {
         background-color: $accent-color;
-        height: $article__content--image-height;        
+        height: $article__content--image-height;
         background-size: cover !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
@@ -163,7 +164,7 @@ header {
     .tags {
       padding: 0;
       margin: 0;
-      background-color: $lightgray;
+      background-color: darken($post-color, 5%);
       text-align: left;
     }
   }
