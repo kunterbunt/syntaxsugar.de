@@ -52,7 +52,7 @@ For this I&amp;rsquo;m using a &lt;a href=&#34;https://en.wikipedia.org/wiki/Pas
 &lt;p&gt;In a nutshell: the first &lt;code&gt;if&lt;/code&gt; checks whether more than &lt;code&gt;stayAliveTime&lt;/code&gt; many seconds have passed since the display has turned on, and turns off the display if enough time has passed, and the display is on, and there&amp;rsquo;s no motion right now.&lt;br /&gt;
 The second &lt;code&gt;if&lt;/code&gt; covers the other case and checks for motion. Any motion updates the point in time &lt;code&gt;lastTimeActivated&lt;/code&gt; where the last motion was detected: this way the display stays on if a person keeps moving in front of it. If it&amp;rsquo;s currently off, then it&amp;rsquo;ll also turn on.&lt;/p&gt;
 
-&lt;p&gt;You&amp;rsquo;ll want to install the &lt;code&gt;gpizero&lt;/code&gt; package and possibly some dependencies of it.&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;ll want to install the &lt;code&gt;gpiozero&lt;/code&gt; package and possibly some dependencies of it.&lt;/p&gt;
 
 &lt;p&gt;The &lt;code&gt;/home/pi/bin/turn-screen&lt;/code&gt; script is quite simple:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;#!/bin/bash&lt;/span&gt;

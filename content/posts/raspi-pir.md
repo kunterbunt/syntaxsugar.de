@@ -50,7 +50,7 @@ except KeyboardInterrupt:
 In a nutshell: the first `if` checks whether more than `stayAliveTime` many seconds have passed since the display has turned on, and turns off the display if enough time has passed, and the display is on, and there's no motion right now.    
 The second `if` covers the other case and checks for motion. Any motion updates the point in time `lastTimeActivated` where the last motion was detected: this way the display stays on if a person keeps moving in front of it. If it's currently off, then it'll also turn on.    
 
-You'll want to install the `gpizero` package and possibly some dependencies of it.
+You'll want to install the `gpiozero` package and possibly some dependencies of it.
 
 The `/home/pi/bin/turn-screen` script is quite simple:
 

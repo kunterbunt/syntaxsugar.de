@@ -74,7 +74,7 @@ For this I&rsquo;m using a <a href="https://en.wikipedia.org/wiki/Passive_infrar
 <p>In a nutshell: the first <code>if</code> checks whether more than <code>stayAliveTime</code> many seconds have passed since the display has turned on, and turns off the display if enough time has passed, and the display is on, and there&rsquo;s no motion right now.<br />
 The second <code>if</code> covers the other case and checks for motion. Any motion updates the point in time <code>lastTimeActivated</code> where the last motion was detected: this way the display stays on if a person keeps moving in front of it. If it&rsquo;s currently off, then it&rsquo;ll also turn on.</p>
 
-<p>You&rsquo;ll want to install the <code>gpizero</code> package and possibly some dependencies of it.</p>
+<p>You&rsquo;ll want to install the <code>gpiozero</code> package and possibly some dependencies of it.</p>
 
 <p>The <code>/home/pi/bin/turn-screen</code> script is quite simple:</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/bash</span>
