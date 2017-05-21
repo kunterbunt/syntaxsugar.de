@@ -71,7 +71,7 @@ For this I&rsquo;m using a <a href="https://en.wikipedia.org/wiki/Passive_infrar
     <span class="k">print</span> <span class="s2">&quot;Stopping.&quot;</span>
 </code></pre></div>
 
-<p>In a nutshell: the first <code>if</code> checks whether more than <code>stayAliveTime</code> many seconds have passed since the display has turned on, and turns off the display if enough time has passed, and the display is on, and there&rsquo;s no motion right now.<br />
+<p>In a nutshell: the first <code>if</code> checks whether more than <code>stayAliveTime</code> many seconds have passed since the last movement was registered, and turns off the display if enough time has passed &amp;&amp; and the display is on &amp;&amp; there&rsquo;s no motion right now.<br />
 The second <code>if</code> covers the other case and checks for motion. Any motion updates the point in time <code>lastTimeActivated</code> where the last motion was detected: this way the display stays on if a person keeps moving in front of it. If it&rsquo;s currently off, then it&rsquo;ll also turn on.</p>
 
 <p>You&rsquo;ll want to install the <code>gpiozero</code> package and possibly some dependencies of it.</p>
