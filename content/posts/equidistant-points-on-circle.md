@@ -13,13 +13,13 @@ hasMath = true
 +++
 
 We know that every circle has \\(360\degree = 2\pi\\). It's what makes them round.   
-How can we find the `(x,y)` positions of `n` points on a circle in such a way that they're equidistant to the center, and with equal distances between one point and the next?
+How can we find the `(x,y)` positions of `n` that are evenly distributed on a circle?
 
-*Trigonometry* to the rescue! All points *on* a circle are equidistant to the circle's center. Now we just need to space them out so that each point's distance to the next is always the same. So we need to go around the 360 degrees evenly.
+*Trigonometry* to the rescue! All points *on* a circle are equidistant to the circle's center. All we need to do is go around the circle evenly so that we arrive where we started after `n` steps.
 
-For this, we put each point at an angle \\(\theta\\) that goes from 0 to 360 evenly in `n` steps:
+For this, we put each point at an angle \\(\theta\\) that goes from `360/n` to `360` evenly in `n` steps:
 
-$$\theta = \frac{1}{n} \cdot 360,\, \frac{2}{n} \cdot 360,\, \ldots,\, \frac{n}{n} \cdot 360$$
+$$\theta = \frac{1}{n} \cdot 360,\;\; \frac{2}{n} \cdot 360,\;\; \ldots,\;\; \frac{n}{n} \cdot 360$$
 
 Then we must know that a point `(x,y)` at an angle \\(\theta\\) is located at
 

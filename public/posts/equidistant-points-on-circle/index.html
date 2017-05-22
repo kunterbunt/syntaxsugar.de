@@ -39,13 +39,13 @@
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
               <p>We know that every circle has \(360\degree = 2\pi\). It&rsquo;s what makes them round.<br />
-How can we find the <code>(x,y)</code> positions of <code>n</code> points on a circle in such a way that they&rsquo;re equidistant to the center, and with equal distances between one point and the next?</p>
+How can we find the <code>(x,y)</code> positions of <code>n</code> that are evenly distributed on a circle?</p>
 
-<p><em>Trigonometry</em> to the rescue! All points <em>on</em> a circle are equidistant to the circle&rsquo;s center. Now we just need to space them out so that each point&rsquo;s distance to the next is always the same. So we need to go around the 360 degrees evenly.</p>
+<p><em>Trigonometry</em> to the rescue! All points <em>on</em> a circle are equidistant to the circle&rsquo;s center. All we need to do is go around the circle evenly so that we arrive where we started after <code>n</code> steps.</p>
 
-<p>For this, we put each point at an angle \(\theta\) that goes from 0 to 360 evenly in <code>n</code> steps:</p>
+<p>For this, we put each point at an angle \(\theta\) that goes from <code>360/n</code> to <code>360</code> evenly in <code>n</code> steps:</p>
 
-<p>$$\theta = \frac{1}{n} \cdot 360,\, \frac{2}{n} \cdot 360,\, \ldots,\, \frac{n}{n} \cdot 360$$</p>
+<p>$$\theta = \frac{1}{n} \cdot 360,\;\; \frac{2}{n} \cdot 360,\;\; \ldots,\;\; \frac{n}{n} \cdot 360$$</p>
 
 <p>Then we must know that a point <code>(x,y)</code> at an angle \(\theta\) is located at</p>
 
