@@ -42,50 +42,48 @@
 For this I&rsquo;m using a <a href="https://en.wikipedia.org/wiki/Passive_infrared_sensor">passive infrared (PIR) sensor</a> which connects to three GPIO pins on the raspi.</p>
 
 <p>Some Python then controls the logic:</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span></span><span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">MotionSensor</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-
-<span class="n">SENSOR_PIN</span> <span class="o">=</span> <span class="mi">23</span>
-<span class="n">stayAliveTime</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">pir</span> <span class="o">=</span> <span class="n">MotionSensor</span><span class="p">(</span><span class="n">SENSOR_PIN</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">lastTimeActivated</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;/home/pi/bin/turn-screen&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">])</span>
-    <span class="n">currentlyOn</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-	<span class="k">if</span> <span class="n">currentlyOn</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">pir</span><span class="o">.</span><span class="n">motion_detected</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">lastTimeActivated</span> <span class="o">&gt;</span> <span class="n">stayAliveTime</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s2">&quot;Movement stopped on &quot;</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">. %b </span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;/home/pi/bin/turn-screen&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">])</span>
-	    <span class="n">currentlyOn</span> <span class="o">=</span> <span class="bp">False</span>
-	<span class="k">if</span> <span class="n">pir</span><span class="o">.</span><span class="n">motion_detected</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s2">&quot;Movement detected on &quot;</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">. %b </span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">lastTimeActivated</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-	    <span class="k">if</span> <span class="ow">not</span> <span class="n">currentlyOn</span><span class="p">:</span>
-		<span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;/home/pi/bin/turn-screen&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">])</span>
-		<span class="n">currentlyOn</span> <span class="o">=</span> <span class="bp">True</span>
-	<span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s2">&quot;Stopping.&quot;</span>
-</code></pre></div>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="s3eb">from</span><span class="s1f40"> </span><span class="s7d0">gpiozero</span><span class="s1f40"> </span><span class="s3eb">import</span><span class="s1f40"> </span><span class="s7d0">MotionSensor</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3eb">import</span><span class="s1f40"> </span><span class="s7d0">time</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3eb">from</span><span class="s1f40"> </span><span class="s7d0">time</span><span class="s1f40"> </span><span class="s3eb">import</span><span class="s1f40"> </span><span class="s7d0">sleep</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3eb">import</span><span class="s1f40"> </span><span class="s7d0">subprocess</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s7d0">SENSOR_PIN</span><span class="s1f40"> </span><span class="sfa0">=</span><span class="s1f40"> </span><span class="sc80">23</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s7d0">stayAliveTime</span><span class="s1f40"> </span><span class="sfa0">=</span><span class="s1f40"> </span><span class="sc80">30</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s7d0">pir</span><span class="s1f40"> </span><span class="sfa0">=</span><span class="s1f40"> </span><span class="s7d0">MotionSensor</span><span class="s1388">(</span><span class="s7d0">SENSOR_PIN</span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">try</span><span class="s1388">:</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7d0">lastTimeActivated</span><span class="s1f40"> </span><span class="sfa0">=</span><span class="s1f40"> </span><span class="s7d0">time</span><span class="sfa0">.</span><span class="s7d0">time</span><span class="s1388">()</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7d0">subprocess</span><span class="sfa0">.</span><span class="s7d0">check_call</span><span class="s1388">([</span><span class="sc1c"></span><span class="sc1c">&#39;/home/pi/bin/turn-screen&#39;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="sc1c"></span><span class="sc1c">&#39;1&#39;</span><span class="s1388">])</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7d0">currentlyOn</span><span class="s1f40"> </span><span class="sfa0">=</span><span class="s1f40"> </span><span class="s7d0">True</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s3e8">while</span><span class="s1f40"> </span><span class="s7d0">True</span><span class="s1388">:</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s3e8">if</span><span class="s1f40"> </span><span class="s7d0">currentlyOn</span><span class="s1f40"> </span><span class="sfa0">and</span><span class="s1f40"> </span><span class="sfa0">not</span><span class="s1f40"> </span><span class="s7d0">pir</span><span class="sfa0">.</span><span class="s7d0">motion_detected</span><span class="s1f40"> </span><span class="sfa0">and</span><span class="s1f40"> </span><span class="s7d0">time</span><span class="sfa0">.</span><span class="s7d0">time</span><span class="s1388">()</span><span class="s1f40"> </span><span class="sfa0">-</span><span class="s1f40"> </span><span class="s7d0">lastTimeActivated</span><span class="s1f40"> </span><span class="sfa0">&gt;</span><span class="s1f40"> </span><span class="s7d0">stayAliveTime</span><span class="s1388">:</span><span class="s1f40">
+</span><span class="s1f40">            </span><span class="s3e8">print</span><span class="s1f40"> </span><span class="sc1c"></span><span class="sc1c">&#34;Movement stopped on &#34;</span><span class="s1f40"> </span><span class="sfa0">+</span><span class="s1f40"> </span><span class="s7d0">time</span><span class="sfa0">.</span><span class="s7d0">strftime</span><span class="s1388">(</span><span class="sc1c"></span><span class="sc1c">&#39;</span><span class="sc1c">%d</span><span class="sc1c">. %b </span><span class="sc1c">%X</span><span class="sc1c">&#39;</span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40">            </span><span class="s7d0">subprocess</span><span class="sfa0">.</span><span class="s7d0">check_call</span><span class="s1388">([</span><span class="sc1c"></span><span class="sc1c">&#39;/home/pi/bin/turn-screen&#39;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="sc1c"></span><span class="sc1c">&#39;0&#39;</span><span class="s1388">])</span><span class="s1f40">
+</span><span class="s1f40">	    </span><span class="s7d0">currentlyOn</span><span class="s1f40"> </span><span class="sfa0">=</span><span class="s1f40"> </span><span class="s7d0">False</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s3e8">if</span><span class="s1f40"> </span><span class="s7d0">pir</span><span class="sfa0">.</span><span class="s7d0">motion_detected</span><span class="s1388">:</span><span class="s1f40">
+</span><span class="s1f40">            </span><span class="s3e8">print</span><span class="s1f40"> </span><span class="sc1c"></span><span class="sc1c">&#34;Movement detected on &#34;</span><span class="s1f40"> </span><span class="sfa0">+</span><span class="s1f40"> </span><span class="s7d0">time</span><span class="sfa0">.</span><span class="s7d0">strftime</span><span class="s1388">(</span><span class="sc1c"></span><span class="sc1c">&#39;</span><span class="sc1c">%d</span><span class="sc1c">. %b </span><span class="sc1c">%X</span><span class="sc1c">&#39;</span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40">            </span><span class="s7d0">lastTimeActivated</span><span class="s1f40"> </span><span class="sfa0">=</span><span class="s1f40"> </span><span class="s7d0">time</span><span class="sfa0">.</span><span class="s7d0">time</span><span class="s1388">()</span><span class="s1f40">
+</span><span class="s1f40">	    </span><span class="s3e8">if</span><span class="s1f40"> </span><span class="sfa0">not</span><span class="s1f40"> </span><span class="s7d0">currentlyOn</span><span class="s1388">:</span><span class="s1f40">
+</span><span class="s1f40">		</span><span class="s7d0">subprocess</span><span class="sfa0">.</span><span class="s7d0">check_call</span><span class="s1388">([</span><span class="sc1c"></span><span class="sc1c">&#39;/home/pi/bin/turn-screen&#39;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="sc1c"></span><span class="sc1c">&#39;1&#39;</span><span class="s1388">])</span><span class="s1f40">
+</span><span class="s1f40">		</span><span class="s7d0">currentlyOn</span><span class="s1f40"> </span><span class="sfa0">=</span><span class="s1f40"> </span><span class="s7d0">True</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7d0">sleep</span><span class="s1388">(</span><span class="sc80">0.1</span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">except</span><span class="s1f40"> </span><span class="s7d8">KeyboardInterrupt</span><span class="s1388">:</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s3e8">print</span><span class="s1f40"> </span><span class="sc1c"></span><span class="sc1c">&#34;Stopping.&#34;</span></code></pre>
+</div>
 <p>In a nutshell: the first <code>if</code> checks whether more than <code>stayAliveTime</code> many seconds have passed since the last movement was registered, and turns off the display if enough time has passed &amp;&amp; and the display is on &amp;&amp; there&rsquo;s no motion right now.<br />
 The second <code>if</code> covers the other case and checks for motion. Any motion updates the point in time <code>lastTimeActivated</code> where the last motion was detected: this way the display stays on if a person keeps moving in front of it. If it&rsquo;s currently off, then it&rsquo;ll also turn on.</p>
 
 <p>You&rsquo;ll want to install the <code>gpiozero</code> package and possibly some dependencies of it.</p>
 
 <p>The <code>/home/pi/bin/turn-screen</code> script is quite simple:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/bash</span>
-<span class="k">if</span> <span class="o">((</span> <span class="nv">$#</span> &lt; <span class="m">1</span><span class="o">))</span><span class="p">;</span>
-<span class="k">then</span>
-	<span class="nb">echo</span> <span class="s2">&quot;Pass &#39;0&#39; for &#39;off&#39; and &#39;1&#39; for &#39;on&#39;!&quot;</span>
-	<span class="nb">exit</span>
-<span class="k">fi</span>
-vcgencmd display_power <span class="nv">$1</span>
-</code></pre></div>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="s1770">#!/bin/bash
+</span><span class="s1770"></span><span class="s3e8">if</span><span class="s1f40"> </span><span class="sfa0">((</span><span class="s1f40"> </span><span class="s7d0">$#</span><span class="s1f40"> &lt; </span><span class="sc80">1</span><span class="sfa0">))</span><span class="s1388">;</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">then</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7d0">echo</span><span class="s1f40"> </span><span class="sc1c">&#34;Pass &#39;0&#39; for &#39;off&#39; and &#39;1&#39; for &#39;on&#39;!&#34;</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7d0">exit</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">fi</span><span class="s1f40">
+</span><span class="s1f40">vcgencmd display_power </span><span class="s7d0">$1</span></code></pre>
+</div>
 <p>and that&rsquo;ll do it!</p>
 
             </div>

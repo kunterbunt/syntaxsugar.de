@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Syntax Sugar</title>
+    <link>http://syntaxsugar.de/tags/linux/</link>
+    <description>Recent content in Linux on Syntax Sugar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Oct 2017 10:28:28 +0100</lastBuildDate>
+    
+	<atom:link href="http://syntaxsugar.de/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building an AUR package with invalid MD5Checksum</title>
+      <link>http://syntaxsugar.de/posts/makepkg/</link>
+      <pubDate>Wed, 11 Oct 2017 10:28:28 +0100</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/makepkg/</guid>
+      <description>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.
+This specific library osgearth is available in the Arch Linux&amp;rsquo;s AUR, but the package maintainer put a wrong MD5 Checksum into the PKGBUILD. Let&amp;rsquo;s say we trust the maintainer and don&amp;rsquo;t believe someone tinkered with the files. What do you do?
+Go to an arbitrary directory
+cd ~/Download mkdir osgearth cd osgearth  Download the Snapshot from the AUR which should contain the PKGBUILD; extract it from the archive file.</description>
+    </item>
+    
+  </channel>
+</rss>

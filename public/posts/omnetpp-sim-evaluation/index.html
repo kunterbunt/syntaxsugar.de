@@ -39,28 +39,27 @@
 <p>When you run a large number of simulations, then you don&rsquo;t want to open each file in the IDE, select the relevant entries and export them to a <code>.csv</code> which MATLAB would understand. It&rsquo;s possible, sure, but also annoying. <code>grep</code> to the rescue: I just parse the scalar <code>.sca</code> files and look for the parameters of interest to me.</p>
 
 <p>This <code>parseScalar</code> bash script automates the parsing:</p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="ch">#!/bin/bash</span>
-<span class="k">if</span> <span class="o">((</span> <span class="nv">$#</span> &lt; <span class="m">3</span><span class="o">))</span><span class="p">;</span>
-<span class="k">then</span>
-	<span class="nb">echo</span> <span class="s2">&quot;Usage: parseScalar &lt;scalar file&gt; &lt;output file&gt; &lt;number of Rx devices&gt;&quot;</span>
-	<span class="nb">exit</span>
-<span class="k">fi</span>
-
-
-<span class="nv">file</span><span class="o">=</span><span class="nv">$1</span>
-<span class="nv">target</span><span class="o">=</span><span class="nv">$2</span>
-<span class="nv">numRx</span><span class="o">=</span><span class="nv">$3</span>
-
-<span class="k">if</span> <span class="o">[</span> -f <span class="nv">$target</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-	rm <span class="nv">$target</span>
-<span class="k">fi</span>
-touch <span class="nv">$target</span>
-
-<span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span><span class="m">0</span><span class="p">;</span> i&lt;<span class="nv">$numRx</span><span class="p">;</span> <span class="nv">i</span><span class="o">+=</span><span class="m">1</span> <span class="o">))</span><span class="p">;</span> <span class="k">do</span>
-	grep -e <span class="s2">&quot;^scalar LTECell.ueD2DRx\[</span><span class="nv">$i</span><span class="s2">\].udpApp\[0\][[:space:]]\{1,\}rcvdPk:sum(packetBytes)[[:space:]]\{1,\}&quot;</span> <span class="nv">$file</span>  <span class="p">|</span> awk <span class="s1">&#39;{print $4}&#39;</span> &gt;&gt; <span class="nv">$target</span>
-<span class="k">done</span>
-</code></pre></div>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="s1770">#!/bin/bash
+</span><span class="s1770"></span><span class="s3e8">if</span><span class="s1f40"> </span><span class="sfa0">((</span><span class="s1f40"> </span><span class="s7d0">$#</span><span class="s1f40"> &lt; </span><span class="sc80">3</span><span class="sfa0">))</span><span class="s1388">;</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">then</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7d0">echo</span><span class="s1f40"> </span><span class="sc1c">&#34;Usage: parseScalar &lt;scalar file&gt; &lt;output file&gt; &lt;number of Rx devices&gt;&#34;</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7d0">exit</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">fi</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s7d0">file</span><span class="s1f40"></span><span class="sfa0">=</span><span class="s7d0">$1</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s7d0">target</span><span class="s1f40"></span><span class="sfa0">=</span><span class="s7d0">$2</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s7d0">numRx</span><span class="s1f40"></span><span class="sfa0">=</span><span class="s7d0">$3</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">if</span><span class="s1f40"> </span><span class="sfa0">[</span><span class="s1f40"> -f </span><span class="s7d0">$target</span><span class="s1f40"> </span><span class="sfa0">]</span><span class="s1388">;</span><span class="s1f40"> </span><span class="s3e8">then</span><span class="s1f40">
+</span><span class="s1f40">	rm </span><span class="s7d0">$target</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">fi</span><span class="s1f40">
+</span><span class="s1f40">touch </span><span class="s7d0">$target</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">for</span><span class="s1f40"> </span><span class="sfa0">((</span><span class="s1f40"> </span><span class="s7d0">i</span><span class="s1f40"></span><span class="sfa0">=</span><span class="sc80">0</span><span class="s1388">;</span><span class="s1f40"> i&lt;</span><span class="s7d0">$numRx</span><span class="s1388">;</span><span class="s1f40"> </span><span class="s7d0">i</span><span class="s1f40"></span><span class="sfa0">+=</span><span class="sc80">1</span><span class="s1f40"> </span><span class="sfa0">))</span><span class="s1388">;</span><span class="s1f40"> </span><span class="s3e8">do</span><span class="s1f40">
+</span><span class="s1f40">	grep -e </span><span class="sc1c">&#34;^scalar LTECell.ueD2DRx\[</span><span class="s7d0">$i</span><span class="sc1c">\].udpApp\[0\][[:space:]]\{1,\}rcvdPk:sum(packetBytes)[[:space:]]\{1,\}&#34;</span><span class="s1f40"> </span><span class="s7d0">$file</span><span class="s1f40">  </span><span class="s1388">|</span><span class="s1f40"> awk </span><span class="sc1c">&#39;{print $4}&#39;</span><span class="s1f40"> &gt;&gt; </span><span class="s7d0">$target</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">done</span><span class="s1f40"></span></code></pre>
+</div>
 <p>You can use this as a starting point. I was interested in each <code>ueD2DRx[$i]</code> device, specifically in the <code>sum(packetBytes)</code> of its <code>udpApp[0]</code>. Adjust for your needs; the biggest struggle had been being compatible with the spacing of the <code>.sca</code> file. It outputs only the numerical values into <code>$target</code>, one line for each value.</p>
 
 <p>Another hint: when you&rsquo;re still making sure your simulations do what they&rsquo;re supposed to, you can save the entire event log of a simulation to a file and then go through it using grep to filter only what&rsquo;s interesting. To do that, put into your configuration <code>omnetpp.ini</code>:</p>
