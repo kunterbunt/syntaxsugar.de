@@ -6,7 +6,7 @@
     <description>Recent content in Linux on Syntax Sugar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Oct 2017 10:28:28 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 11 Oct 2017 10:28:28 +0200</lastBuildDate>
     
 	<atom:link href="http://syntaxsugar.de/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Building an AUR package with invalid MD5Checksum</title>
       <link>http://syntaxsugar.de/posts/makepkg/</link>
-      <pubDate>Wed, 11 Oct 2017 10:28:28 +0100</pubDate>
+      <pubDate>Wed, 11 Oct 2017 10:28:28 +0200</pubDate>
       
       <guid>http://syntaxsugar.de/posts/makepkg/</guid>
       <description>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.
