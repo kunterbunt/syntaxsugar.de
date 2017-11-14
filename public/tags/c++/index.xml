@@ -6,10 +6,20 @@
     <description>Recent content in C&#43;&#43; on Syntax Sugar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Mar 2017 16:43:13 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 14 Nov 2017 15:56:05 +0100</lastBuildDate>
     
 	<atom:link href="http://syntaxsugar.de/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Clion Libraries</title>
+      <link>http://syntaxsugar.de/posts/clion-libraries/</link>
+      <pubDate>Tue, 14 Nov 2017 15:56:05 +0100</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/clion-libraries/</guid>
+      <description>CLion is my preferred C++ IDE. For my Master&amp;rsquo;s thesis, today I had to implement the calculation of Shapley&amp;rsquo;s value - a concept from game theory.
+I thought, okay, let&amp;rsquo;s do this properly. I&amp;rsquo;ll be using the calculation inside a simulator, but I want to implement it outside the scope of this huge code framework, so that I can run easily unit-test it. So I&amp;rsquo;ll use CLion and let it compile a library.</description>
+    </item>
     
     <item>
       <title>Reading module and simulation parameters in OMNeT&#43;&#43;</title>
