@@ -36,10 +36,12 @@ footer .mdl-button i {
 .mdl-layout__header {
   background: white;
   color: rgba(0, 0, 0, 0.87); }
-  .mdl-layout__header a {
+  .mdl-layout__header a, .mdl-layout__header .mdl-navigation__link {
     color: rgba(0, 0, 0, 0.87);
     text-transform: capitalize;
     font-family: "Helvetica","Arial",sans-serif; }
+    .mdl-layout__header a:hover, .mdl-layout__header .mdl-navigation__link:hover {
+      border-bottom: 2px solid #FF5722; }
   .mdl-layout__header .mdl-layout__header-row {
     padding-left: 0; }
 
@@ -55,7 +57,7 @@ footer .mdl-button i {
 
 .mdl-layout__header {
   background: white;
-  color: rgba(0, 0, 0, 0.87); }
+  color: rgba(0, 0, 0, 0.817); }
   .mdl-layout__header a {
     color: rgba(0, 0, 0, 0.87); }
   .mdl-layout__header .mdl-layout__header-row {

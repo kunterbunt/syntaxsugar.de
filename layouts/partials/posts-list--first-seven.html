@@ -7,7 +7,7 @@
         {{ partial "post.html" . }}
       {{ end }}
       {{ if ge (len .Data.Pages) 8 }} <!-- if there are >=8 posts -->
-      <a href="/more" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+      <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect">
         SHOW ME MORE
       </a>
       {{ else }}
