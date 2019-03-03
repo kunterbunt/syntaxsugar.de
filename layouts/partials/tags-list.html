@@ -4,10 +4,8 @@
       <i class="material-icons">&#xE5C5;</i>
       <div class="vertical-line vertical-line--50px"></div>      
       
-      {{ range $index, $element := .Data.Pages }}        
-        {{ if (ne .Permalink "{{.Site.baseURL}} about")}} 
-          {{ partial "post.html" . }}
-        {{ end }}
+      {{ range $index, $element := .Data.Pages }}                
+        {{ partial "post.html" . }}        
       {{ end }}      
       <i class="material-icons">arrow_drop_up</i>
     </div>
