@@ -8,39 +8,71 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <link rel="stylesheet" href="/css/article.css" type="text/css">
+  <link rel="stylesheet" href="/css/index.css" type="text/css">  
+  <script src="https://schnack.nomadblog.de/build/embed.js"
+    data-schnack-slug=""
+    data-schnack-target=".comments-go-here">
+  </script>
+  <link rel="alternate" type="application/rss+xml" href="http://syntaxsugar.de/tags/server/index.xml" title="Syntax Sugar" />
+  </head>
 
-</head>
 
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <a href="#" onclick="history.go(-1)"><button class="mdl-button mdl-js-button"><i class="material-icons">arrow_back</i></button></a><a href=http://syntaxsugar.de/><span class="mdl-layout-title">Syntax Sugar</span></a><i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i><span class="mdl-cell--hide-phone">Server</span>
-      </div>
-    </header>
+    <div class="mdl-layout__header-row">
+      <a href="#" onclick="history.go(-1)">
+        <button class="mdl-button mdl-js-button">
+          <i class="material-icons">arrow_back</i>
+        </button></a>
+        <a href=http://syntaxsugar.de/>
+          <span class="mdl-layout-title">Syntax Sugar</span>
+        </a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <a href="/tags" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">tags</a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <button class="mdl-button mdl-js-button">
+          <a class="mdl-cell--hide-phone"> Server</a>
+        </button>
+    </div>
+</header>
     <main class="mdl-layout__content">
       <div class="page-content">
-        <div class="mdl-grid">
-          <div class="mdl-cell mdl-cell--6-col">
-            <ul class="articles-list mdl-list">
-              
-              <li class="mdl-list__item mdl-list__item--three-line">
-                <a href="http://syntaxsugar.de/posts/nginx/">
-                  <span class="mdl-list__item-primary-content">
-                    <i class="mdl-list__item-avatar"><i class="material-icons">label</i></i>
-                    <span class="article__title">Multi-domain nginx configuration</span>
-                    <span class="article__date">// March 23</span>
-                    <span class="article__summary mdl-list__item-text-body">
-                      How to configure nginx to serve two different HTML directories to two different domains.
-                    </span>
-                  </span>
-                  </a>
-              </li>
-              
-            </ul>
-          </div>
+        <div class="articles-container mdl-grid mdl-grid--no-spacing">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col">
+      <i class="material-icons">&#xE5C5;</i>
+      <div class="vertical-line vertical-line--50px"></div>
+      
+        <div class="article">
+    <a href="http://syntaxsugar.de/posts/nginx/" title="How to configure nginx to serve two different HTML directories to two different domains." target="_self">
+      <span class="article__date">23/03/2017</span>
+      <div class="article__content">
+        <div class="article__content--title-section">
+          
+          <object><a href="/posts" class="button button--top mdl-button mdl-js-button mdl-js-ripple-effect">posts/</a></object>
         </div>
+        <h4 class="article__content--title">Multi-domain nginx configuration</h4>
+        
+        <p class="article__content--summary">How to configure nginx to serve two different HTML directories to two different domains.</p>
+        
+        
+        <div class="tags">
+          
+            <span><object><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="/tags/server">server</a></object></span>
+          
+            <span><object><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="/tags/nginx">nginx</a></object></span>
+          
+        </div>
+      </div>
+    </a>
+  </div>
+<div class="vertical-line"></div>
+            
+      <i class="material-icons">arrow_drop_up</i>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
       </div>
     </main>
   </div>

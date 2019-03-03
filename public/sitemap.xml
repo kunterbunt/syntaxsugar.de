@@ -68,17 +68,6 @@
   </url>
   
   <url>
-    <loc>http://syntaxsugar.de/more/empty/</loc>
-    <lastmod>2017-03-22T23:27:43+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://syntaxsugar.de/tags/</loc>
-    <lastmod>2017-03-22T23:27:43+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://syntaxsugar.de/tags/bioinformatics/</loc>
     <lastmod>2017-03-28T14:21:39+02:00</lastmod>
     <priority>0</priority>
@@ -111,12 +100,6 @@
   <url>
     <loc>http://syntaxsugar.de/tags/lte/</loc>
     <lastmod>2017-05-01T16:41:12+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://syntaxsugar.de/more/</loc>
-    <lastmod>2017-03-22T23:27:43+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -164,7 +147,7 @@
   
   <url>
     <loc>http://syntaxsugar.de/tags/</loc>
-    <lastmod>2017-03-22T23:27:43+01:00</lastmod>
+    <lastmod>2017-03-28T14:21:39+02:00</lastmod>
     <priority>0</priority>
   </url>
   

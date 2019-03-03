@@ -1,19 +1,15 @@
 @import "base";
 @import "mixins";
-$article__date-margin: 26px;
+$article__date-margin: 28px;
 $article__content--title-height: 32px;
 $article__content--image-height: 256px;
 $article__content-height: 64px;
 
-$background-color: #D5CDC2;
-$post-color: #ECEFF1;
+$background-color: #DDE3E6;
+$background-color-dark: darken($background-color, 50%);
+$post-color: rgb(245,245,245);
 $line-color: $darkgray;
 
-header {
-  a {
-    padding-left: 64px;
-  }
-}
 .image {
   background-repeat: no-repeat;
   background-size: contain;
@@ -47,10 +43,10 @@ header {
   }
 }
 
-.container--intro {
+.intro {  
   background-color: $background-color;
   p {
-    text-align: justify;
+    text-align: center;
   }
 }
 
@@ -102,7 +98,7 @@ header {
     }
 
     .article__date {
-      color: $text-color;
+      color: $text-color--weak;
       font-size: 150%;
       border: 2px solid $line-color;
       padding: 4px;
@@ -164,7 +160,13 @@ header {
     .tags {
       padding: 0;
       margin: 0;
-      background-color: darken($post-color, 5%);
+      background-color: $darkgray;
+      * {
+        color: darken(white, 30%);
+        &:hover {
+          color: white;
+        }
+      }      
       text-align: left;
     }
   }

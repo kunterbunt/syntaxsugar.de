@@ -15,15 +15,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
   
-</head>
+  </head>
 
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <a href="#" onclick="history.go(-1)"><button class="mdl-button mdl-js-button"><i class="material-icons">arrow_back</i></button></a><a href=http://syntaxsugar.de/><span class="mdl-layout-title">Syntax Sugar</span></a><i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i><a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a><i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i><a class="mdl-cell--hide-phone"> Finding equidistant points on a circle</a>
-      </div>
-    </header>
+    <div class="mdl-layout__header-row">
+      <a href="#" onclick="history.go(-1)">
+        <button class="mdl-button mdl-js-button">
+          <i class="material-icons">arrow_back</i>
+        </button></a>
+        <a href=http://syntaxsugar.de/>
+          <span class="mdl-layout-title">Syntax Sugar</span>
+        </a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <button class="mdl-button mdl-js-button">
+          <a class="mdl-cell--hide-phone"> Finding equidistant points on a circle</a>
+        </button>
+    </div>
+</header>
     <main class="mdl-layout__content">
       <div class="page-content">
         <article class="container--content">
@@ -62,7 +74,7 @@ For simplicity&rsquo;s sake, here is some <code>C++</code> code that does exactl
 </span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span class="k">class</span> <span class="nc">Coord</span> <span class="p">{</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">Coord</span> <span class="p">{</span>
   <span class="k">public</span><span class="o">:</span>
     <span class="n">Coord</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">{}</span>
     <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
@@ -75,15 +87,15 @@ For simplicity&rsquo;s sake, here is some <code>C++</code> code that does exactl
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;I need parameters: &lt;circle center x&gt; &lt;circle center y&gt; &lt;radius&gt; &lt;number of points&gt;&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;I need parameters: &lt;circle center x&gt; &lt;circle center y&gt; &lt;radius&gt; &lt;number of points&gt;&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
     <span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="kt">double</span>  <span class="n">radius</span> <span class="o">=</span> <span class="n">atof</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
           <span class="n">centerX</span> <span class="o">=</span> <span class="n">atof</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
           <span class="n">centerY</span> <span class="o">=</span> <span class="n">atof</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
           <span class="n">numPoints</span> <span class="o">=</span> <span class="n">atof</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
-  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;Plotting &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">numPoints</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; equidistant points on a circle with center (x=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">centerX</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;, y=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">centerY</span>
-       <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;) with radius r=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">radius</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Plotting &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">numPoints</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; equidistant points on a circle with center (x=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">centerX</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, y=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">centerY</span>
+       <span class="o">&lt;&lt;</span> <span class="s">&#34;) with radius r=&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">radius</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
   <span class="n">vector</span><span class="o">&lt;</span><span class="n">Coord</span><span class="o">&gt;</span> <span class="n">coords</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">double</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numPoints</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -94,19 +106,20 @@ For simplicity&rsquo;s sake, here is some <code>C++</code> code that does exactl
   <span class="p">}</span>
 
   <span class="c1">// Print them.
-</span><span class="c1"></span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;P</span><span class="se">\t</span><span class="s">x</span><span class="se">\t</span><span class="s">y&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;P</span><span class="se">\t</span><span class="s">x</span><span class="se">\t</span><span class="s">y&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="c1">// Print pairwise distances.
 </span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;d(&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;) = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">distance</span><span class="p">(</span><span class="n">coords</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">j</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;d(&#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;) = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">coords</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">distance</span><span class="p">(</span><span class="n">coords</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">j</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
 <p>For <code>n=6, x0=800, y0=300, r=200</code> we find:</p>
 
 <pre><code>P	x	y
@@ -162,11 +175,9 @@ d(6, 6) = 0
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">Contact</div>
     <ul class="mdl-mini-footer__link-list">
-      <li><a href="mailto:sebastian@syntaxsugar.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
-      <li><a href="https://github.com/kunterbunt" title="Github" target="_blank" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span><img class="icon" src="/imgs/icons/github.png"/></span></a></li>
+      <li><a href="mailto:sebastian@nomadblog.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
     </ul>
   </div>
-    
 </footer>
 
       </div>
