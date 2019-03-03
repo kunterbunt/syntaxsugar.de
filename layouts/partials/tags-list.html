@@ -3,18 +3,13 @@
     <div class="mdl-cell mdl-cell--6-col">
       <i class="material-icons">&#xE5C5;</i>
       <div class="vertical-line vertical-line--50px"></div>
-      {{ range first 7 .Data.Pages }}
-        {{ if (ne .Section "about") }}
+      {{ range $index, $element := .Data.Pages }}
+        <!-- Ignore first element: the <tags> directory itself. -->
+        {{ if (gt $index 0 )}} 
           {{ partial "post.html" . }}
         {{ end }}
-      {{ end }}
-      {{ if ge (len .Data.Pages) 8 }} <!-- if there are >=8 posts -->
-      <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect">
-        SHOW ME MORE
-      </a>
-      {{ else }}
+      {{ end }}      
       <i class="material-icons">arrow_drop_up</i>
-      {{ end }}
     </div>
     <div class="mdl-layout-spacer"></div>
 </div>

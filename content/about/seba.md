@@ -30,7 +30,8 @@ On this blog I write about techy, nerdy computer science stuff, possibly related
 
 On [nomadblog.de](https://nomadblog.de) I write about this great thing called travelling.
 
-You can also find me on [researchgate.net](https://www.researchgate.net/profile/Sebastian_Lindner2) and [ORCID](https://orcid.org/0000-0002-5694-9675), which is where you can find a list of my publications.
+You can also find me on [researchgate.net](https://www.researchgate.net/profile/Sebastian_Lindner2) and [ORCID](https://orcid.org/0000-0002-5694-9675).   
+I aim to keep my publications list on Research Gate updated, otherwise ORCID attempts to fetch publications automatically, and the [institute publications site](https://www.tuhh.de/et6/publications.html) is another place to look. 
 
 Education
 ---

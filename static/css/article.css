@@ -5,7 +5,8 @@
   -webkit-box-sizing: border-box; }
 
 body, html, .mdl-layout, .mdl-layout__content, .page-content {
-  color: #090909; }
+  color: #090909;
+  background-color: #DDE3E6; }
 
 .container--content {
   min-height: calc(100vh - 64px - 100.5px); }
@@ -54,6 +55,13 @@ footer .mdl-button i {
 
 .text-align--center {
   text-align: center; }
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); }
 
 .capitalize {
   text-transform: capitalize; }
