@@ -1,6 +1,6 @@
 title = "Syntax Sugar"
 languageCode = "en-us"
-baseurl = "http://syntaxsugar.de/"
+baseurl = "https://syntaxsugar.de/"
 pluralizeListTitles = false
 PygmentsCodeFences = true
 pygmentsuseclasses = true
