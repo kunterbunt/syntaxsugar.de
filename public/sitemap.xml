@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://syntaxsugar.de/about/seba/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://syntaxsugar.de/posts/clion-libraries/</loc>
     <lastmod>2017-11-14T15:56:05+01:00</lastmod>
   </url>
@@ -65,6 +70,18 @@
   <url>
     <loc>http://syntaxsugar.de/posts/nginx/</loc>
     <lastmod>2017-03-23T20:21:28+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://syntaxsugar.de/tags/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://syntaxsugar.de/about/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -141,13 +158,13 @@
   
   <url>
     <loc>http://syntaxsugar.de/</loc>
-    <lastmod>2017-11-14T15:56:05+01:00</lastmod>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://syntaxsugar.de/tags/</loc>
-    <lastmod>2017-03-28T14:21:39+02:00</lastmod>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
     <priority>0</priority>
   </url>
   

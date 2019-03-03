@@ -6,10 +6,30 @@
     <description>Recent content on Syntax Sugar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Nov 2017 15:56:05 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 03 Mar 2019 13:54:07 +0100</lastBuildDate>
     
 	<atom:link href="http://syntaxsugar.de/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sebastian</title>
+      <link>http://syntaxsugar.de/about/seba/</link>
+      <pubDate>Sun, 03 Mar 2019 13:54:07 +0100</pubDate>
+      
+      <guid>http://syntaxsugar.de/about/seba/</guid>
+      <description>Hi, I&amp;rsquo;m Sebastian. I live in beautiful Hamburg, Germany.
+Here I work as a research assistant pursuing my PhD at the Hamburg University of Technology.
+My research interests include
+Machine Learning,
+Stochastic Modeling,
+Stochastic Simulation,
+Stochastic Optimization,
+Markov Chains,
+applied to Wireless Communication Networks,
+and Cognitive Radio Networks.
+About me On this blog I write about techy, nerdy computer science stuff, possibly related to my research.
+On nomadblog.de I write about this great thing called travelling.</description>
+    </item>
     
     <item>
       <title>Clion Libraries</title>
