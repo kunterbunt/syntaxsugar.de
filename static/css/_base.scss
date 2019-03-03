@@ -16,9 +16,11 @@ $code-highlight: #EFF0F1;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-body, html, .mdl-layout, .mdl-layout__content, .page-content {
-  // height: auto;
+body, html, .mdl-layout, .mdl-layout__content, .page-content {  
   color: $text-color;
+}
+.container--content {
+  min-height: calc(100vh - 64px - 100.5px);
 }
 .mdl-grid {
   p {
@@ -59,8 +61,10 @@ footer {
   a, .mdl-navigation__link {
     color: rgba(0, 0, 0, 0.87);
     text-transform: capitalize;
-    font-family: "Helvetica","Arial",sans-serif;
-    &:hover {      
+    font-family: "Helvetica","Arial",sans-serif;    
+  }
+  a.mdl-navigation__link, a.mdl-button {
+    &:hover {
       border-bottom: 2px solid $accent-color;
     }
   }
@@ -78,4 +82,23 @@ footer {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.portrait {
+  border-radius: 50%;
+  width: 200px;
+  max-height: 200px;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+.dark {
+  background-color: $darkgray;
+  color: $almost-white;
+  code {
+    background-color: lighten($darkgray, 30%);
+  }
+  blockquote {
+    background: lighten($darkgray, 30%) !important; 
+  } 
 }
