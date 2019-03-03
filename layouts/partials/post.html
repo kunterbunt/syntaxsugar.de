@@ -14,8 +14,10 @@
         <div class="article__content--image" style="background: url('{{.Params.logo}}');"></div>
         {{ end }}
         <div class="tags">
-          {{ range .Params.tags }}
-            <span><object><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></object></span>
+          {{ range $type, $val := .Params.tags }}
+            {{ if gt (len $val) 0 }}
+              <span><object><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></object></span>
+            {{ end }}
           {{ end }}
         </div>
       </div>
