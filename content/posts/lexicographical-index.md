@@ -11,7 +11,7 @@ logo = ""
 showLogo = false
 +++
 
-Building upon the idea of [word frequency vectors]({{< relref "posts/word-frequency-vectors.md" >}}), when implementing the idea in a language of your choice, you might encounter the problem of instantiating a container that is going to store the observed frequencies. In an efficient implementation you could instantiate such a container that holds the right number of items, which is \\(\left| \sum\_{language} \right| ^n\\), e.g. for DNA the alphabet is \\(\sum_{DNA}=\\{A,C,T,G\\}\\). \\(n\\) is the word length for which you're finding the frequency vector.
+Building upon the idea of [word frequency vectors]({{< relref "/posts/word-frequency-vectors.md" >}}), when implementing the idea in a language of your choice, you might encounter the problem of instantiating a container that is going to store the observed frequencies. In an efficient implementation you could instantiate such a container that holds the right number of items, which is \\(\left| \sum\_{language} \right| ^n\\), e.g. for DNA the alphabet is \\(\sum_{DNA}=\\{A,C,T,G\\}\\). \\(n\\) is the word length for which you're finding the frequency vector.
 
 So, in `C++`, the container could look like this:
 
