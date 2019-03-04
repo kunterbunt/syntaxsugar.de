@@ -1,0 +1,1 @@
+"Syntactic sugar [...] makes the language "sweeter" for human use: things can be expressed more clearly, more concisely, or in an alternative style that some may prefer." -- [Wikipedia](https://en.wikipedia.org/wiki/Syntactic_sugar)
