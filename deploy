@@ -5,7 +5,7 @@ then
 	exit
 fi
 hugo
-rsync -av public/ kunterbunt@vserver:~/web/syntaxsugar.de
+rsync -av public/ seba@server:~/web/syntaxsugar.de
 git add .
 git commit -m "$1"
 git push
